@@ -2,10 +2,13 @@ package spring.catering.model;
 
 import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
+@Entity
 public class Piatto {
 
 	@Id
@@ -15,7 +18,11 @@ public class Piatto {
 	private String nome;
 
 	private String descrizione;
+	
+	@ManyToMany
+	private List<Buffet> buffet;
 
+	@ManyToMany(mappedBy = "piatti")
 	private List<Ingrediente> ingredienti;
 
 	public Long getId() {
@@ -40,6 +47,14 @@ public class Piatto {
 
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
+	}
+	
+	public List<Buffet> getBuffet() {
+		return buffet;
+	}
+
+	public void setBuffet(List<Buffet> buffet) {
+		this.buffet = buffet;
 	}
 
 	public List<Ingrediente> getIngredienti() {

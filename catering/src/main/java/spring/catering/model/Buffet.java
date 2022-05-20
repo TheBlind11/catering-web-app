@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Buffet {
@@ -14,8 +16,10 @@ public class Buffet {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	@ManyToOne
 	private Chef chef;
 
+	@ManyToMany(mappedBy = "buffet")
 	private List<Piatto> piatti;
 
 	private String nome;

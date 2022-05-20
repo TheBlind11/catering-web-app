@@ -1,9 +1,14 @@
 package spring.catering.model;
 
+import java.util.List;
+
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
+@Entity
 public class Ingrediente {
 
 	@Id
@@ -15,6 +20,9 @@ public class Ingrediente {
 	private String origine;
 
 	private String descrizione;
+	
+	@ManyToMany
+	private List<Piatto> piatti;
 
 	public Long getId() {
 		return id;
@@ -46,6 +54,14 @@ public class Ingrediente {
 
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
+	}
+
+	public List<Piatto> getPiatti() {
+		return piatti;
+	}
+
+	public void setPiatti(List<Piatto> piatti) {
+		this.piatti = piatti;
 	}
 
 }

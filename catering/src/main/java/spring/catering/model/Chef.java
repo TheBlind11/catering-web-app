@@ -2,10 +2,13 @@ package spring.catering.model;
 
 import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
+@Entity
 public class Chef {
 
 	@Id
@@ -18,6 +21,7 @@ public class Chef {
 
 	private String nazionalita;
 
+	@OneToMany(mappedBy = "chef")
 	private List<Buffet> buffet;
 
 	public Long getId() {
