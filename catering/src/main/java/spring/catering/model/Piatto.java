@@ -6,7 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Piatto {
@@ -22,7 +24,8 @@ public class Piatto {
 	@ManyToMany
 	private List<Buffet> buffet;
 
-	@ManyToMany(mappedBy = "piatti")
+	@OneToMany
+	@JoinColumn(name = "ingredienti")
 	private List<Ingrediente> ingredienti;
 
 	public Long getId() {
