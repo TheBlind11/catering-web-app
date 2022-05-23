@@ -2,30 +2,44 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8" />
-	<link href="/css/index.css" rel="stylesheet">
+	<link href="/css/style.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 	<title>User Login</title>
 </head>
 <body>
-	<div>
-		<div>
-			<h1>Accedi</h1>
-		</div>
-		
-		<div>
-			<h2>Non hai un account? <a href = "">Registrati</a></h2>
-		</div>
-		
-		<div>
-			FORM
-		</div>
-		
-		<div>
-			DIVISORE
-		</div>
-		
-		<div id = "bottoni_accesso>
+	<div align="center" class="title"><h1>Accedi</h1>
+	<h3 align="center">Non hai un account? <a href = "">Registrati</a></h3>
+	</div>
+	
+	<div class="logincontainer">
+		<div class="itemLogin">
+			<!-- inizio del form -->
+			<form action="login">
+				<div>
+					<input type="email" name="email" placeholder="Email" required>
+				</div>
 			
+				<div>
+					<input type="password" name="password" placeholder="Password" required>
+				</div>
+				
+				<div>
+					<button class="loginbutton" type="submit">LOGIN</button>
+				</div>
+			</form>
 		</div>
+
+		<div class="divider"></div>
+
+		<div class="itemLogin">
+			<div>
+				<button class="socialbutton" type="submit"><img class="logo" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=">Sign in with Google</button>
+			</div>
+
+			<div>
+				<button class="socialbutton fb" type="submit"><img class="fblogo logo" src="/images/facebook_logo_icon_147291.png">Sign in with Facebook</button>
+			</div>
+        </div>
 	</div>
 </body>
 </html>

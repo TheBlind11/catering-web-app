@@ -1,0 +1,97 @@
+body {
+	font-family: Ubuntu;
+}
+
+input, button {
+    font-family: Ubuntu;
+}
+
+.loginbutton {
+    font-family: Ubuntu;
+    font-size: 16px;
+    color: #fff;
+    justify-content: center;
+    padding: 0 20px;
+    height: 62px;
+    background-color: #827ffe;
+    border-radius: 5px 5px 5px 5px;
+    transition-duration: 0.4s;
+    width: 100%;
+    border: none;
+}
+
+.loginbutton:hover {
+	background-color: #403866;
+}
+
+.logincontainer {
+	width: 100%;
+	display: flex;
+    justify-content: center; /* stessa cosa di text align per i contenitori */
+	align-items: center;
+}
+
+.logincontainer .itemLogin{
+	padding: 20px;
+}
+
+.title {
+    margin-top: 120px;
+}
+
+.logincontainer input {
+    font-size: 18px;
+    padding: 20px;
+    border-radius: 5px 5px 5px 5px;
+    margin-bottom: 15px;
+    background-color: rgb(230, 225, 225);
+    border: none;
+}
+
+input:focus-visible {
+    outline: none; /* bordo input text */
+}
+
+.socialbutton {
+    padding: 20px 35px;
+    border-radius: 5px;
+    background-color: rgb(230, 225, 225);
+    margin-bottom: 20px;
+    font-size: 14px;
+    border: none;
+    text-align: center;
+    width: 100%;
+}
+
+.divider {
+    height: 200px;
+    width: 2px;
+    opacity: .8;
+    background-color: #858f96;
+    margin: 0 71px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.logo {
+    margin: 0px 18px -4px -10px;
+}
+
+.socialbutton:hover {
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25);
+}
+
+.fb {
+    background-color: #3b5998;
+    color: white;
+}
+
+.fb:hover {
+    box-shadow: 0 -1px 0 #3b5998, 0 2px 4px #3b5998;
+}
+
+.fblogo {
+    width: 18px;
+}
