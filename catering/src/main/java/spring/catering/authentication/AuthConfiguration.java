@@ -25,6 +25,8 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter{
 			
 			.antMatchers(HttpMethod.POST, "/userLogin", "/register").permitAll()
 			
+			//admin role mancanti
+			
 			.anyRequest().authenticated()
 			
 			.and().formLogin()
