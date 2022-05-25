@@ -1,5 +1,7 @@
 package spring.catering.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,14 +20,24 @@ public class CredentialsService {
 	private PasswordEncoder pe;
 	
 	@Transactional
-	public void save(Credentials c) {
+	public Credentials save(Credentials c) {
 		c.setRole(Credentials.DEFAULT_ROLE);
 		c.setPassword(this.pe.encode(c.getPassword()));
-		cr.save(c);
+		return cr.save(c);
 	}
+	
+    public Credentials getCredentials(Long id) {
+        Optional<Credentials> result = this.cr.findById(id);
+        return result.orElse(null);
+    }
+
+    public Credentials getCredentials(String username) {
+        Optional<Credentials> result = this.cr.findByUsername(username);
+        return result.orElse(null);
+    }
 
 	public boolean alreadyExists(Credentials target) {
-		return cr.existsByUsurnameAndUtente(target.getUsurname(), target.getUtente());
+		return cr.existsByUsernameAndUtente(target.getUsername(), target.getUtente());
 	}
 	
 }

@@ -3,6 +3,8 @@ package spring.catering.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,16 +33,19 @@ public class AuthenticationController {
 	@PostMapping("/register")
 	public String addCredentials(@Valid @ModelAttribute ("utente") Utente utente, BindingResult utenteBindingResult, @Valid @ModelAttribute("credenziali") Credentials credenziali, BindingResult credenzialiBindingResult, Model model) {
 		
+		utente.setCognome(utente.getCognome().toLowerCase());
+		utente.setNome(utente.getNome().toLowerCase());
+		
 		this.uv.validate(utente, utenteBindingResult);
 		this.cv.validate(credenziali, credenzialiBindingResult);
 		
 		if(!credenzialiBindingResult.hasErrors() && !utenteBindingResult.hasErrors()) {
 			credenziali.setUtente(utente);  
 			cs.save(credenziali);  // this also stores the User, thanks to Cascade.ALL policy
-			return "userLogin.html";
+			return "index.html";
 		}
-		return "register.html";
 		
+		return "register.html";
 	}
 	
 	@GetMapping("/register")
@@ -49,5 +54,22 @@ public class AuthenticationController {
 		model.addAttribute("utente", new Utente());
 		return "register.html";
 	}
-
+	
+	
+	@GetMapping("/login")
+    public String showLoginForm(Model model) {
+        return "loginForm.html";
+    }
+	
+	@GetMapping("/default")
+    public String defaultAfterLogin(Model model) {
+        UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Credentials credentials = cs.getCredentials(userDetails.getUsername());
+        
+        if(credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+            return "dashboard.html";
+        }
+        
+        return "index.html";
+    }
 }

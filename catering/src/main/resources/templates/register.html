@@ -14,15 +14,15 @@
 		<div class="itemLogin">
 			<form th:action="@{/register}" method="post">
 				<div>
-					<input type="text" placeholder="Nome" required  th:field="${utente.nome}" />
+					<input type="text" placeholder="Nome" required th:field="${utente.nome}"/>
 				</div>
 				
 				<div>
-					<input type="text" placeholder="Cognome" required th:field="${utente.cognome}" />
+					<input type="text" placeholder="Cognome" required th:field="${utente.cognome}"/>
 				</div>
 			
 				<div>
-					<input type="text" placeholder="Usurname" required th:field="${credenziali.usurname}" />
+					<input type="text" placeholder="Username" required th:field="${credenziali.username}" />
 				</div>
 			
 				<div>

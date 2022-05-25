@@ -22,7 +22,7 @@ public class Credentials {
 	
 	@Column(nullable = false)
 	@Size(min = 3, max = 15)
-	private String usurname;
+	private String username;
 	
 	@Column(nullable = false)
 	@Size(min = 8, max = 255)
@@ -42,12 +42,12 @@ public class Credentials {
 		this.id = id;
 	}
 
-	public String getUsurname() {
-		return usurname;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUsurname(String usurname) {
-		this.usurname = usurname;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {

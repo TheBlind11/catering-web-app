@@ -8,15 +8,15 @@
 </head>
 <body>
 	<div align="center" class="title"><h1>Accedi</h1>
-	<h3 align="center">Non hai un account? <a href = "">Registrati</a></h3>
+	<h3 align="center">Non hai un account? <a th:href="@{/register}">Registrati</a></h3>
 	</div>
 	
 	<div class="logincontainer">
 		<div class="itemLogin">
 			<!-- inizio del form -->
-			<form action="login">
+			<form action="@{/login}" method="post">
 				<div>
-					<input type="email" name="email" placeholder="Email" required>
+					<input type="text" name="username" placeholder="Username" required>
 				</div>
 			
 				<div>

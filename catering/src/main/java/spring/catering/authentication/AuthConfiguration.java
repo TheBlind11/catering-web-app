@@ -14,6 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import spring.catering.model.Credentials;
+
 @SuppressWarnings("deprecation")
 @Configuration
 @EnableWebSecurity
@@ -22,39 +24,47 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter{
 	@Autowired DataSource datasource;
 	
 	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-			.antMatchers(HttpMethod.GET, "/", "/index", "/userLogin", "/register", "/css/**", "/images/**").permitAll()
-			
-			.antMatchers(HttpMethod.POST, "/userLogin", "/register").permitAll()
-			
-			//admin role mancanti
-			
-			.anyRequest().authenticated()
-			
-			.and().formLogin()
-			
-			.loginPage("/userLogin")
-			
-			.defaultSuccessUrl("/index")
-			
-			.and()
-			
-			.logout()
-			
-			.logoutUrl("/index")
-			
-			.logoutSuccessUrl("/index")
-			
-			.invalidateHttpSession(true)
-			
-			.deleteCookies("JSESSIONID")
-			
-			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-			
-			.clearAuthentication(true).permitAll();
-		
-	}
+    protected void configure(HttpSecurity http) throws Exception{
+        http
+            //authorization paragraph: qui definiamo chi puo accedere a cosa
+            .authorizeRequests()
+            
+            //chiunque (autenticato o no) puo' accedere alle pagine index, login, register, ai css e alle immagini
+            .antMatchers(HttpMethod.GET, "/", "/index", "/login", "/register", "/css/**", "/images/**").permitAll()
+            
+            //chiunque (autenticato o no) puo' mandare richieste POST al punto di accesso
+            .antMatchers(HttpMethod.POST, "/login", "/register").permitAll()
+            
+            //solo gli utenti autenticati con ruolo admin possono accedere a risorse con path /admin/
+            .antMatchers(HttpMethod.GET, "/admin/**").hasAnyAuthority(Credentials.ADMIN_ROLE)
+            .antMatchers(HttpMethod.POST, "/admin/**").hasAnyAuthority(Credentials.ADMIN_ROLE)
+            .anyRequest().authenticated()
+
+            //login paragraph: qui definiamo come è gestita l'autenticazione
+            //usiamo il protocollo formlogin
+            .and().formLogin()
+            
+            //la pagina di login si trova a /login
+            //NOTA: Spring gestisce il post di login automaticamente
+            .loginPage("/login")
+            
+            //se il login ha successo, si viene rediretti al path /default
+            .defaultSuccessUrl("/default")
+
+            //logout paragraph: qui definiamo il logout
+            .and().logout()
+            
+            //il logout è attivato con una richiesta GET a "/logout"
+            .logoutUrl("/logout")
+            
+            //in caso di successo, si viene reindirizzati all'index
+            .logoutSuccessUrl("/")
+            
+            .invalidateHttpSession(true)
+            .deleteCookies("JSESSIONID")
+            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+            .clearAuthentication(true).permitAll();
+    }
 	
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -63,9 +73,9 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter{
 				
 				.dataSource(this.datasource)
 				
-				.authoritiesByUsernameQuery("SELECT usurname, role FROM credentials WHERE usurname=?") //query per ottenere le credenziali per nome utente e ruolo corrispondente
+				.authoritiesByUsernameQuery("SELECT username, role FROM credentials WHERE username=?") //query per ottenere le credenziali per nome utente e ruolo corrispondente
 				
-				.usersByUsernameQuery("SELECT usurname, password, 1 as enabled FROM credentials WHERE usurname=?");  //query per ottenere usurname e password
+				.usersByUsernameQuery("SELECT username, password, 1 as enabled FROM credentials WHERE username=?");  //query per ottenere usurname e password
 		
 	}
 	
