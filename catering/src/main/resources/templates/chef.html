@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<link href="/css/index.css" rel="stylesheet">
+	<title>Catering Webapp</title>
+</head>
+<body>
+	<div>
+		<h4>Dettagli Chef</h4>
+		<div>
+			<span th:text="${chef.nome}">Paolo</span>
+			<span th:text="${chef.cognome}">Rossi</span>
+			<span th:text="${chef.nazionalita}">Italia</span>
+		</div>
+	</div>
+</body>
+</html>

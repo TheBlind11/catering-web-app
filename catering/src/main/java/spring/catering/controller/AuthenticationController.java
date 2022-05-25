@@ -50,8 +50,8 @@ public class AuthenticationController {
 	
 	@GetMapping("/register")
 	public String getCredentials(Model model) {
-		model.addAttribute("credenziali", new Credentials());
 		model.addAttribute("utente", new Utente());
+		model.addAttribute("credenziali", new Credentials());
 		return "register.html";
 	}
 	

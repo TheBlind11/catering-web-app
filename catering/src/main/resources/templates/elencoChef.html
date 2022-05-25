@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<link href="/css/index.css" rel="stylesheet">
+	<title>Catering Webapp</title>
+</head>
+<body>
+	<div>
+		<h4>Chef inseriti</h4>
+		
+		<ul>
+			<li th:each="chef : ${chefs}">
+			<a href="chef.html" th:href="@{'/chef' + '/' + ${chef.id}}" th:text="${chef.nome} + ' ' + ${chef.cognome}">Paolo Rossi</a>
+			<a href="modificaChef.html" th:href="@{'/modificaChef' + '/' + ${chef.id}}">Modifica</a>
+			<a href="elencoChef.html" th:href="@{'/deleteChef' + '/' + ${chef.id}}">Cancella</a></li>
+		</ul>
+
+	</div>
+	<footer>
+		<a href="/dashboard.html">Home</a>
+	</footer>
+</body>
+</html>

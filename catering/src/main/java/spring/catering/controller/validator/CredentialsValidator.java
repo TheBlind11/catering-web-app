@@ -22,9 +22,8 @@ public class CredentialsValidator implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		if (this.cs.alreadyExists((Credentials)target)) {
-			errors.reject("persona.duplicato");
+			errors.reject("credenziali.duplicato");
 		}
-		
 	}
 	
 }

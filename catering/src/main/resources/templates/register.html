@@ -15,18 +15,22 @@
 			<form th:action="@{/register}" method="post">
 				<div>
 					<input type="text" placeholder="Nome" required th:field="${utente.nome}"/>
+					<!-- <span th:if="${#fields.hasErrors('utente.nome')}" th:errors="${utente.nome}"></span> -->
 				</div>
 				
 				<div>
 					<input type="text" placeholder="Cognome" required th:field="${utente.cognome}"/>
+					<!-- <span th:if="${#fields.hasErrors('utente.cognome')}" th:errors="${utente.cognome}"></span> -->
 				</div>
 			
 				<div>
 					<input type="text" placeholder="Username" required th:field="${credenziali.username}" />
+					<!-- <span th:if="${#fields.hasErrors('credenziali.username')}" th:errors="${credenziali.username}"></span> -->
 				</div>
 			
 				<div>
 					<input type="password" placeholder="Password" required th:field="${credenziali.password}" />
+					<!-- <span th:if="${#fields.hasErrors('credenziali.password')}" th:errors="${credenziali.password}"></span> -->
 				</div>
 				
 				<div>

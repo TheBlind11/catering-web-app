@@ -37,7 +37,7 @@ public class CredentialsService {
     }
 
 	public boolean alreadyExists(Credentials target) {
-		return cr.existsByUsernameAndUtente(target.getUsername(), target.getUtente());
+		return cr.existsByUsername(target.getUsername());
 	}
 	
 }

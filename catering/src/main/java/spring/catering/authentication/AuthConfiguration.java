@@ -58,7 +58,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter{
             .logoutUrl("/logout")
             
             //in caso di successo, si viene reindirizzati all'index
-            .logoutSuccessUrl("/")
+            .logoutSuccessUrl("/index")
             
             .invalidateHttpSession(true)
             .deleteCookies("JSESSIONID")
@@ -75,7 +75,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter{
 				
 				.authoritiesByUsernameQuery("SELECT username, role FROM credentials WHERE username=?") //query per ottenere le credenziali per nome utente e ruolo corrispondente
 				
-				.usersByUsernameQuery("SELECT username, password, 1 as enabled FROM credentials WHERE username=?");  //query per ottenere usurname e password
+				.usersByUsernameQuery("SELECT username, password, 1 as enabled FROM credentials WHERE username=?");  //query per ottenere username e password
 		
 	}
 	

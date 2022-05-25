@@ -9,7 +9,7 @@ import spring.catering.model.Utente;
 
 public interface CredentialsRepository extends CrudRepository<Credentials, Long>{
 
-	public boolean existsByUsernameAndUtente(String username, Utente utente);
+	public boolean existsByUsername(String username);
 
 	public Optional<Credentials> findByUsername(String username);
 	
