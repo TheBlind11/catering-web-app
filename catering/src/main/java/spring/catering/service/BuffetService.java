@@ -11,10 +11,10 @@ import spring.catering.repository.BuffetRepository;
 
 @Service
 public class BuffetService {
-	
+
 	@Autowired
 	private BuffetRepository br;
-	
+
 	@Transactional
 	public Buffet save(Buffet buffet) {
 		return br.save(buffet);
@@ -23,8 +23,18 @@ public class BuffetService {
 	public boolean alreadyExists(Buffet target) {
 		return this.br.existsByNome(target.getNome());
 	}
-	
+
 	public Optional<Buffet> findById(Long id) {
 		return this.br.findById(id);
 	}
+
+	public void update(Buffet buffet, Buffet newBuffet) {
+		buffet.setNome(newBuffet.getNome());
+		buffet.setDescrizione(newBuffet.getDescrizione());
+	}
+	
+	public void delete(Buffet buffet) {
+		this.br.delete(buffet);
+	}
+	
 }

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8" />
-<link href="/css/index.css" rel="stylesheet">
-<title>Catering Webapp</title>
+	<meta charset="UTF-8" />
+	<link href="/css/index.css" rel="stylesheet">
+	<title>Catering Webapp</title>
 </head>
 <body>
 	<div>
@@ -11,6 +11,7 @@
 		<div>
 			<span th:text="${buffet.nome}">Paolo</span> 
 			<span th:text="${buffet.descrizione}">Buffet a base di...</span> 
+			<span th:text="${buffet.chef.nome} + ' ' + ${buffet.chef.cognome}">Barbieri</span> 
 			<!-- <a th:href="@{/chef} + '/' + ${chef.id} + @{/elencoBuffet}">ELENCO PIATTI</a> -->
 			<!-- <a th:href="@{/chef} + '/' + ${chef.id} + @{/aggiungiBuffet}">AGGIUNGI PIATTO</a> -->
 		</div>

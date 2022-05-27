@@ -1,5 +1,7 @@
 package spring.catering.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +34,11 @@ public class BuffetController {
 	
 	//visualizza un buffet di uno specifico chef
 	@GetMapping("/chef/{idChef}/buffet/{idBuffet}")
-	public String getBuffet(@PathVariable("id") Long idChef, @PathVariable("id") Long idBuffet, Model model) {
-		Chef c = this.cs.findById(idChef).get();
-		Buffet b = this.bs.findById(idBuffet).get();
-		model.addAttribute("chef", c);
-		model.addAttribute("buffet", b);
+	public String getBuffet(@PathVariable("idChef") Long idChef, @PathVariable("idBuffet") Long idBuffet, Model model) {
+		Chef chef = this.cs.findById(idChef).get();
+		Buffet buffet = this.bs.findById(idBuffet).get();
+		model.addAttribute("chef", chef);
+		model.addAttribute("buffet", buffet);
 		return "buffet/buffet.html";
 	}
 	
@@ -49,7 +51,7 @@ public class BuffetController {
 		return "buffet/elencoBuffet.html";
 	}
 	
-	//vai alla pagine newBuffet per aggiungere un nuovo buffet
+	//vai alla pagine newBuffet per aggiungere un nuovo buffet ad uno chef
 	@GetMapping("/chef/{id}/aggiungiBuffet") 
 	public String newBuffet(@PathVariable("id") Long id, Model model) {
 		Chef chef = this.cs.findById(id).get();
@@ -58,10 +60,11 @@ public class BuffetController {
 		return "buffet/newBuffet.html";
 	}
 	
-	//configurazione form di pagina newBuffet per aggiungere un nuovo buffet
+	//configurazione form di pagina newBuffet per aggiungere un nuovo buffet ad uno chef
 	@PostMapping("/chef/{id}/aggiungiBuffet")
-	public String newBuffet(@Valid @ModelAttribute Buffet buffet, BindingResult buffetBindingResult, @PathVariable Long id, Model model) {
+	public String newBuffet(@Valid @ModelAttribute Buffet buffet, BindingResult buffetBindingResult, @PathVariable("id") Long id, Model model) {
 		Chef chef = cs.findById(id).get();
+		model.addAttribute("chef", chef);
 		bv.validate(buffet, buffetBindingResult);
 		
 		if(!buffetBindingResult.hasErrors()) {
@@ -73,4 +76,41 @@ public class BuffetController {
 		return "buffet/newBuffet.html";
 	}
 	
+	//elimina un buffet di uno chef
+	@GetMapping("/chef/{idChef}/eliminaBuffet/{idBuffet}")
+	public String deleteBuffet(@PathVariable("idChef") Long idChef, @PathVariable("idBuffet") Long idBuffet, Model model) {
+		Chef chef = this.cs.findById(idChef).get();
+		Buffet buffet = this.bs.findById(idBuffet).get();
+		this.bs.delete(buffet);
+		return "buffet/elencoBuffet.html";
+	}
+	
+	//vai alla pagina di modifica di un buffet di uno chef
+	@GetMapping("/chef/{idChef}/modificaBuffet/{idBuffet}")
+	public String editBuffet(@PathVariable("idChef") Long idChef, @PathVariable("idBuffet") Long idBuffet, Model model) {
+		Chef chef = this.cs.findById(idChef).get();
+		Buffet buffet = this.bs.findById(idBuffet).get();
+		model.addAttribute("buffet", buffet);
+		model.addAttribute("chef", chef);
+		return "buffet/modificaBuffet.html";
+	}
+	
+	//configurazione form della pagina di modifica di un buffet di uno chef
+	@PostMapping("/chef/{idChef}/modificaBuffet/{idBuffet}")
+	public String editBuffet(@PathVariable("idChef") Long idChef, @PathVariable("idBuffet") Long idBuffet, 
+							@Valid @ModelAttribute Buffet newBuffet, BindingResult buffetBindingResult, Model model) {
+		Chef chef = this.cs.findById(idChef).get();
+		Buffet buffet = this.bs.findById(idBuffet).get();
+		model.addAttribute("chef", chef);
+		
+		this.bv.validate(newBuffet, buffetBindingResult);
+		
+		if(!buffetBindingResult.hasErrors()) {
+			this.bs.update(buffet, newBuffet);
+			List<Buffet> buffetList = chef.getBuffet();
+			model.addAttribute("buffetList", buffetList);
+			return "buffet/elencoBuffet.html";
+		}
+		return "buffet/modificaBuffet.html";
+	}
 }

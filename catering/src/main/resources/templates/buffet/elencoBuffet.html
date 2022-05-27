@@ -11,9 +11,9 @@
 		
 		<ul>
 			<li th:each="buffet : ${buffetList}">
-			<a th:href="@{/chef} + '/' + ${chef.id} + @{/buffet} + '/' + ${buffet.id}" th:text="${buffet.nome}">Paolo Rossi</a>
-			<a th:href="@{/chef} + '/' + ${chef.id} + @{/modificaBuffet} + '/' + ${buffet.id}">Modifica</a>
-			<a th:href="@{'/Chef' + '/' + ${chef.id}}">Cancella</a></li>
+			<a th:href="@{'/chef' + '/' + ${chef.id} + '/buffet' + '/' + ${buffet.id}}" th:text="${buffet.nome}">Buffet</a>
+			<a th:href="@{'/chef' + '/' + ${chef.id} + '/modificaBuffet' + '/' + ${buffet.id}}">Modifica</a>
+			<a th:href="@{'/chef' + '/' + ${chef.id} + '/eliminaBuffet' + '/' + ${buffet.id}}">Cancella</a></li>
 		</ul>
 
 	</div>
