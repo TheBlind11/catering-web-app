@@ -29,23 +29,48 @@ public class BuffetController {
 	@Autowired
 	private ChefService cs;
 	
-	@PostMapping("/chef/{id}/aggiungiBuffet")
-	public String newBuffet(@Valid @ModelAttribute Buffet buffet, BindingResult buffetBindingResult, @PathVariable Long id, BindingResult chefBindingResult, Model model) {
+	
+	//visualizza un buffet di uno specifico chef
+	@GetMapping("/chef/{idChef}/buffet/{idBuffet}")
+	public String getBuffet(@PathVariable("id") Long idChef, @PathVariable("id") Long idBuffet, Model model) {
+		Chef c = this.cs.findById(idChef).get();
+		Buffet b = this.bs.findById(idBuffet).get();
+		model.addAttribute("chef", c);
+		model.addAttribute("buffet", b);
+		return "buffet/buffet.html";
+	}
+	
+	//visualizza l'elenco dei buffet di uno schef
+	@GetMapping("/chef/{id}/elencoBuffet")
+	public String showBuffetList(@PathVariable("id") Long id, Model model) {
 		Chef chef = this.cs.findById(id).get();
+		model.addAttribute("chef", chef);
+		model.addAttribute("buffetList", chef.getBuffet());
+		return "buffet/elencoBuffet.html";
+	}
+	
+	//vai alla pagine newBuffet per aggiungere un nuovo buffet
+	@GetMapping("/chef/{id}/aggiungiBuffet") 
+	public String newBuffet(@PathVariable("id") Long id, Model model) {
+		Chef chef = this.cs.findById(id).get();
+		model.addAttribute("chef", chef);
+		model.addAttribute("buffet", new Buffet());
+		return "buffet/newBuffet.html";
+	}
+	
+	//configurazione form di pagina newBuffet per aggiungere un nuovo buffet
+	@PostMapping("/chef/{id}/aggiungiBuffet")
+	public String newBuffet(@Valid @ModelAttribute Buffet buffet, BindingResult buffetBindingResult, @PathVariable Long id, Model model) {
+		Chef chef = cs.findById(id).get();
 		bv.validate(buffet, buffetBindingResult);
 		
 		if(!buffetBindingResult.hasErrors()) {
 			buffet.setChef(chef);
-			bs.save(buffet);
-			return "elencoBuffet.html";
+			chef.getBuffet().add(buffet);
+			cs.save(chef);
+			return "buffet/elencoBuffet.html";
 		}
-		return "newBuffet.html";
-	}
-	
-	@GetMapping("/aggiungiBuffet") 
-	public String newBuffet(Model model) {
-		model.addAttribute("buffet", new Buffet());
-		return "newBuffet.html";
+		return "buffet/newBuffet.html";
 	}
 	
 }

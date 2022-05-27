@@ -1,5 +1,7 @@
 package spring.catering.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,5 +22,9 @@ public class BuffetService {
 
 	public boolean alreadyExists(Buffet target) {
 		return this.br.existsByNome(target.getNome());
+	}
+	
+	public Optional<Buffet> findById(Long id) {
+		return this.br.findById(id);
 	}
 }

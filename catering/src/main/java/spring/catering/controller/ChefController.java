@@ -26,12 +26,28 @@ public class ChefController {
 	@Autowired
 	private ChefValidator cv;
 	
+	//visualizza info chef 
+	@GetMapping("/chef/{id}")
+	public String getChef(@PathVariable("id") Long id, Model model) {
+		Chef chef = cs.findById(id).get();
+		model.addAttribute("chef", chef);
+		return "chef/chef.html";
+	}
+	
+	//visualizza elenco chef nel db
+	@GetMapping("/elencoChef")
+	public String getAllChef(Model model) {
+		List<Chef> chefs = this.cs.findAllChef();
+		model.addAttribute("chefs", chefs);
+		
+		return "chef/elencoChef.html";
+	}
 	
 	//vai a pagina newChef.html
 	@GetMapping("/aggiungiChef") 
 	public String newChef(Model model) {
 		model.addAttribute("chef", new Chef());
-		return "newChef.html";
+		return "chef/newChef.html";
 	}
 	
 	//configurazione form per addChef in pagina newChef.html
@@ -41,27 +57,17 @@ public class ChefController {
 		
 		if(!bindingResult.hasErrors()) {
 			cs.save(chef);
-			return "chef.html";
+			return "chef/chef.html";
 		}
 			
-		return "newChef.html";
-	}
-	
-	//visualizza info chef 
-	@GetMapping("/chef/{id}")
-	public String getChef(@PathVariable("id") Long id, Model model) {
-		Chef chef = cs.findById(id).get();
-		model.addAttribute("chef", chef);
-		return "chef.html";
+		return "chef/newChef.html";
 	}
 	
 	//elimina uno chef
 	@GetMapping("/deleteChef/{id}")
 	public String deleteChef(@PathVariable("id") Long id, Model model) {
 		this.cs.delete(id);
-		List<Chef> chefs = this.cs.findAllChef();
-		model.addAttribute("chefs", chefs);
-		return "elencoChef.html";
+		return "chef/elencoChef.html";
 	}
 	
 	//vai alla pagina di mofifica di uno chef
@@ -69,7 +75,7 @@ public class ChefController {
 	public String modificaChef(@PathVariable("id") Long id, Model model) {
 		Chef chef = cs.findById(id).get();
 		model.addAttribute("chef", chef);
-		return "modificaChef.html";
+		return "chef/modificaChef.html";
 	}
 	
 	//configurazione form di modifica alla pagina di modificaChef
@@ -81,17 +87,10 @@ public class ChefController {
 			this.cs.update(this.cs.findById(id).get(), newChef);
 			List<Chef> chefs = this.cs.findAllChef();
 			model.addAttribute("chefs", chefs);
-			return "elencoChef.html";
+			return "chef/elencoChef.html";
 		}
-		return "modificaChef.html";
+		return "chef/modificaChef.html";
 	}
 	
-	@GetMapping("/elencoChef")
-	public String getAllChef(Model model) {
-		List<Chef> chefs = this.cs.findAllChef();
-		model.addAttribute("chefs", chefs);
-		
-		return "elencoChef.html";
-	}
 }
 

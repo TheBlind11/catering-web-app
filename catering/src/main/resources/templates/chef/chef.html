@@ -12,6 +12,8 @@
 			<span th:text="${chef.nome}">Paolo</span> 
 			<span th:text="${chef.cognome}">Rossi</span> 
 			<span th:text="${chef.nazionalita}">Italia</span>
+			<a th:href="@{/chef} + '/' + ${chef.id} + @{/elencoBuffet}">ELENCO BUFFET</a>
+			<a th:href="@{/chef} + '/' + ${chef.id} + @{/aggiungiBuffet}">AGGIUNGI BUFFET</a>
 		</div>
 	</div>
 	<footer>

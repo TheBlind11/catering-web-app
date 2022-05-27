@@ -30,6 +30,36 @@ public class AuthenticationController {
 	@Autowired
 	private UtenteValidator uv;
 	
+	
+	//vai alla pagina di login
+	@GetMapping("/login")
+    public String showLoginForm(Model model) {
+        return "loginForm.html";
+    }
+	
+	
+	//vai alla pagin index (o admin/dashboard) dopo il login
+	@GetMapping("/default")
+    public String defaultAfterLogin(Model model) {
+        UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Credentials credentials = cs.getCredentials(userDetails.getUsername());
+        
+        if(credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+            return "admin/dashboard.html";
+        }
+        
+        return "index.html";
+    }
+	
+	//vai alla pgina di registrazione di un utente
+	@GetMapping("/register")
+	public String getCredentials(Model model) {
+		model.addAttribute("utente", new Utente());
+		model.addAttribute("credenziali", new Credentials());
+		return "register.html";
+	}
+	
+	//configurazione form della pagina di registrazione di un utente
 	@PostMapping("/register")
 	public String addCredentials(@Valid @ModelAttribute ("utente") Utente utente, BindingResult utenteBindingResult, @Valid @ModelAttribute("credenziali") Credentials credenziali, BindingResult credenzialiBindingResult, Model model) {
 		
@@ -47,30 +77,4 @@ public class AuthenticationController {
 		
 		return "register.html";
 	}
-	
-	@GetMapping("/register")
-	public String getCredentials(Model model) {
-		model.addAttribute("utente", new Utente());
-		model.addAttribute("credenziali", new Credentials());
-		return "register.html";
-	}
-	
-	
-	@GetMapping("/login")
-    public String showLoginForm(Model model) {
-        return "loginForm.html";
-    }
-	
-	@GetMapping("/default")
-    public String defaultAfterLogin(Model model) {
-        UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Credentials credentials = cs.getCredentials(userDetails.getUsername());
-        
-        if(credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-            return "admin/dashboard.html";
-        }
-        
-        return "index.html";
-    }
-	
 }
