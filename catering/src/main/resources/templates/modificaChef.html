@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="UTF-8" />
-	<link href="/css/style.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-	<title>Chef modifica</title>
+<meta charset="UTF-8" />
+<link href="/css/style.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu"
+	rel="stylesheet">
+<title>Chef modifica</title>
 </head>
 <body>
-	<div align="center" class="title"><h1>Modifica uno Chef</h1>
+	<div align="center" class="title">
+		<h1>Modifica uno Chef</h1>
 	</div>
-	
+
 	<div class="logincontainer">
 		<div class="itemLogin">
-			<form th:action="@{/modificaChef}" method="post">
+			<form th:action="@{/modificaChef} + '/' + ${chef.id}" method="post">
 				<div>
-					<input type="text" placeholder="Nome" required th:field="${newChef.nome}" value="${chef.nome}"/>
+					<input type="text" placeholder="Nome" required
+						th:field="${chef.nome}" />
 					<!-- <span th:if="${#fields.hasErrors('chef.nome')}" th:errors="${chef.nome}"></span> -->
 				</div>
-				
+
 				<div>
-					<input type="text" placeholder="Cognome" required th:field="${newChef.cognome}" value="${chef.cognome}"/>
+					<input type="text" placeholder="Cognome" required
+						th:field="${chef.cognome}" />
 					<!-- <span th:if="${#fields.hasErrors('chef.cognome')}" th:errors="${chef.cognome}"></span> -->
 				</div>
-			
+
 				<div>
-					<input type="text" placeholder="Nazionalità" required th:field="${newChef.nazionalita}" value="${chef.nazionalita}"/>
+					<input type="text" placeholder="Nazionalità" required
+						th:field="${chef.nazionalita}" />
 					<!-- <span th:if="${#fields.hasErrors('chef.nazionalita')}" th:errors="${chef.nazionalita}"></span> -->
 				</div>
-				
+
 				<div>
 					<button class="loginbutton" type="submit">Conferma</button>
 				</div>
 			</form>
 		</div>
 	</div>
+	<footer>
+		<a th:href="@{/default}">Home</a>
+	</footer>
 </body>
 </html>
-	

@@ -32,7 +32,6 @@ public class ChefService {
 	}
 
 	public Optional<Chef> findById(Long id) {
-		// TODO Auto-generated method stub
 		return this.cr.findById(id);
 	}
 	
@@ -44,6 +43,13 @@ public class ChefService {
 		}
 		
 		return tuttiChef;
+	}
+
+	public void update(Chef chef, Chef newChef) {
+		chef.setNome(newChef.getNome());
+		chef.setCognome(newChef.getCognome());
+		chef.setNazionalita(newChef.getNazionalita());
+		this.cr.save(chef);
 	}
 	
 }

@@ -59,6 +59,8 @@ public class ChefController {
 	@GetMapping("/deleteChef/{id}")
 	public String deleteChef(@PathVariable("id") Long id, Model model) {
 		this.cs.delete(id);
+		List<Chef> chefs = this.cs.findAllChef();
+		model.addAttribute("chefs", chefs);
 		return "elencoChef.html";
 	}
 	
@@ -67,21 +69,18 @@ public class ChefController {
 	public String modificaChef(@PathVariable("id") Long id, Model model) {
 		Chef chef = cs.findById(id).get();
 		model.addAttribute("chef", chef);
-		model.addAttribute("newChef", new Chef());
 		return "modificaChef.html";
 	}
 	
 	//configurazione form di modifica alla pagina di modificaChef
 	@PostMapping("/modificaChef/{id}")
 	public String modificaChefForm(@PathVariable("id") Long id, @Valid @ModelAttribute Chef newChef, BindingResult chefBindingResult, Model model) {
-		Chef chef = this.cs.findById(id).get();
 		this.cv.validate(newChef, chefBindingResult);
 		
 		if(!chefBindingResult.hasErrors()) {
-			chef.setNome(newChef.getNome());
-			chef.setCognome(newChef.getCognome());
-			chef.setNazionalita(newChef.getNazionalita());
-			this.cs.save(chef);
+			this.cs.update(this.cs.findById(id).get(), newChef);
+			List<Chef> chefs = this.cs.findAllChef();
+			model.addAttribute("chefs", chefs);
 			return "elencoChef.html";
 		}
 		return "modificaChef.html";

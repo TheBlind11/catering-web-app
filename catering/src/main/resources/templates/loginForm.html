@@ -14,7 +14,7 @@
 	<div class="logincontainer">
 		<div class="itemLogin">
 			<!-- inizio del form -->
-			<form action="@{/login}" method="post">
+			<form th:action="@{/login}" method="post">
 				<div>
 					<input type="text" name="username" placeholder="Username" required>
 				</div>

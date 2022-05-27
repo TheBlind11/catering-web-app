@@ -67,9 +67,10 @@ public class AuthenticationController {
         Credentials credentials = cs.getCredentials(userDetails.getUsername());
         
         if(credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-            return "dashboard.html";
+            return "admin/dashboard.html";
         }
         
         return "index.html";
     }
+	
 }
