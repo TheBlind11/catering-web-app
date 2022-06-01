@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<link href="/css/index.css" rel="stylesheet">
+	<title>Catering Webapp</title>
+</head>
+<body>
+	<div>
+		<h4>I Nostri Buffet</h4>
+		
+		<ul>
+			<li th:each="buffet : ${buffetList}">
+			<a th:href="@{'/buffet' + '/' + ${buffet.id}}" th:text="${buffet.nome}">Buffet</a>
+		</ul>
+
+	</div>
+	<footer>
+		<a th:href="@{/default}">Home</a>
+	</footer>
+</body>
+</html>

@@ -1,5 +1,6 @@
 package spring.catering.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,10 @@ public class BuffetService {
 	
 	public void delete(Buffet buffet) {
 		this.br.delete(buffet);
+	}
+	
+	public List<Buffet> findAll() {
+		return (List<Buffet>) this.br.findAll();
 	}
 	
 }
