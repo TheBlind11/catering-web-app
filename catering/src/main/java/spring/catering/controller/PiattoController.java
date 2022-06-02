@@ -111,10 +111,10 @@ public class PiattoController {
 		return "piatto/modificaPiatto.html";
 	}
 	
-	//
+	//configurazione form della pagina di modifica di un piatto di un buffet
 	@PostMapping("/buffet/{idBuffet}/modificaPiatto/{idPiatto}")
 	public String modificaPiattoForm(@PathVariable("idBuffet") Long idBuffet, @PathVariable("idPiatto") Long idPiatto, 
-								@Valid @ModelAttribute Piatto newPiatto, BindingResult bindingResult, Model model) {
+									@Valid @ModelAttribute Piatto newPiatto, BindingResult bindingResult, Model model) {
 		Buffet buffet = this.bs.findById(idBuffet).get();
 		Piatto piatto = this.ps.findById(idPiatto).get();
 		

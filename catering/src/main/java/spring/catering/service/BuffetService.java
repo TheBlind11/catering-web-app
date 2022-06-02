@@ -16,11 +16,6 @@ public class BuffetService {
 	@Autowired
 	private BuffetRepository br;
 
-	@Transactional
-	public Buffet save(Buffet buffet) {
-		return br.save(buffet);
-	}
-
 	public boolean alreadyExists(Buffet target) {
 		return this.br.existsByNome(target.getNome());
 	}
@@ -29,11 +24,14 @@ public class BuffetService {
 		return this.br.findById(id);
 	}
 
+	@Transactional
 	public void update(Buffet buffet, Buffet newBuffet) {
 		buffet.setNome(newBuffet.getNome());
 		buffet.setDescrizione(newBuffet.getDescrizione());
+		this.br.save(buffet);
 	}
 	
+	@Transactional
 	public void delete(Buffet buffet) {
 		this.br.delete(buffet);
 	}
