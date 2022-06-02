@@ -6,4 +6,6 @@ import spring.catering.model.Piatto;
 
 public interface PiattoRepository extends CrudRepository<Piatto, Long>{
 
+	public boolean existsByNomeAndDescrizione(String nome, String descrizione);
+
 }

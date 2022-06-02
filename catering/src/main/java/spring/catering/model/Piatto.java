@@ -1,5 +1,6 @@
 package spring.catering.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -27,6 +28,10 @@ public class Piatto {
 	@OneToMany
 	@JoinColumn(name = "ingredienti")
 	private List<Ingrediente> ingredienti;
+	
+	public Piatto() {
+		this.buffet = new ArrayList<Buffet>();
+	}
 
 	public Long getId() {
 		return id;

@@ -12,8 +12,8 @@
 			<span th:text="${buffet.nome}">Paolo</span> 
 			<span th:text="${buffet.descrizione}">Buffet a base di...</span> 
 			<span th:text="${buffet.chef.nome} + ' ' + ${buffet.chef.cognome}">Barbieri</span> 
-			<!-- <a th:href="@{/chef} + '/' + ${chef.id} + @{/elencoBuffet}">ELENCO PIATTI</a> -->
-			<!-- <a th:href="@{/chef} + '/' + ${chef.id} + @{/aggiungiBuffet}">AGGIUNGI PIATTO</a> -->
+			<a th:href="@{/buffet} + '/' + ${buffet.id} + @{/elencoPiatti}">ELENCO PIATTI</a>
+			<a th:href="@{/buffet} + '/' + ${buffet.id} + @{/aggiungiPiatto}">AGGIUNGI PIATTO</a>
 		</div>
 	</div>
 	<footer>

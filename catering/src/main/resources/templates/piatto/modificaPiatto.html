@@ -4,24 +4,24 @@
 	<meta charset="UTF-8" />
 	<link href="/css/style.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-	<title>Buffet modifica</title>
+	<title>Piatto modifica</title>
 </head>
 <body>
 	<div align="center" class="title">
-		<h1>Modifica un Buffet di uno Chef</h1>
+		<h1>Modifica un Piatto di un Buffet</h1>
 	</div>
 
 	<div class="logincontainer">
 		<div class="itemLogin">
-			<form th:action="@{/chef} + '/' + ${chef.id} + @{/modificaBuffet} + '/' + ${buffet.id}" method="post">
+			<form th:action="@{/buffet} + '/' + ${buffet.id} + @{/modificaPiatto} + '/' + ${piatto.id}" method="post">
 				<div>
-					<input type="text" placeholder="Nome" required th:field="${buffet.nome}" />
-					<!-- <span th:if="${#fields.hasErrors('buffet.nome')}" th:errors="${buffet.nome}"></span> -->
+					<input type="text" placeholder="Nome" required th:field="${piatto.nome}" />
+					<!-- <span th:if="${#fields.hasErrors('piatto.nome')}" th:errors="${piatto.nome}"></span> -->
 				</div>
 
 				<div>
-					<input type="text" placeholder="Descrizione" required th:field="${buffet.descrizione}" />
-					<!-- <span th:if="${#fields.hasErrors('buffet.descrizione')}" th:errors="${buffet.descrizione}"></span> -->
+					<input type="text" placeholder="Descrizione" required th:field="${piatto.descrizione}" />
+					<!-- <span th:if="${#fields.hasErrors('piatto.descrizione')}" th:errors="${piatto.descrizione}"></span> -->
 				</div>
 
 				<div>

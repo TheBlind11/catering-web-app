@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<link href="/css/index.css" rel="stylesheet">
+	<title>Catering Webapp</title>
+</head>
+<body>
+	<div>
+		<h4>Piatti del Buffet</h4>
+		
+		<ul>
+			<li th:each="piatto : ${piatti}">
+			<a th:href="@{'/buffet' + '/' + ${buffet.id} + '/piatto' + '/' + ${piatto.id}}" th:text="${piatto.nome}">Carbonara</a>
+			<a th:href="@{'/buffet' + '/' + ${buffet.id} + '/modificaPiatto' + '/' + ${piatto.id}}">Modifica</a>
+			<a th:href="@{'/buffet' + '/' + ${buffet.id} + '/eliminaPiatto' + '/' + ${piatto.id}}">Cancella</a></li>
+		</ul>
+
+	</div>
+	<footer>
+		<a th:href="@{/default}">Home</a>
+	</footer>
+</body>
+</html>

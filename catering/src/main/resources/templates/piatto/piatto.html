@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<link href="/css/index.css" rel="stylesheet">
+	<title>Catering Webapp</title>
+</head>
+<body>
+	<div>
+		<h4>Dettagli Piatto</h4>
+		<div>
+			<span th:text="${piatto.nome}">Carbonara</span> 
+			<span th:text="${piatto.descrizione}">Piatto a base di...</span> 
+			<!-- <a th:href="@{/piatto} + '/' + ${piatto.id} + @{/elencoIngredienti}">ELENCO INGREDIENTI</a> -->
+			<!-- <a th:href="@{/piatto} + '/' + ${piatto.id} + @{/aggiungiIngrediente}">AGGIUNGI INGREDIENTE</a> -->
+		</div>
+	</div>
+	<footer>
+		<a th:href="@{/default}">Home</a>
+	</footer>
+</body>
+</html>

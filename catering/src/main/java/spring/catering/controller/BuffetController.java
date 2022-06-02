@@ -40,6 +40,14 @@ public class BuffetController {
 		return "buffet/allBuffet.html";
 	}
 	
+	@GetMapping("/buffet/{id}")
+	public String getBuffet(@PathVariable("id") Long id, Model model) {
+		Buffet buffet = this.bs.findById(id).get();
+		model.addAttribute("buffet", buffet);
+		
+		return "buffet/buffet.html";
+	}
+	
 	//visualizza un buffet di uno specifico chef
 	@GetMapping("/chef/{idChef}/buffet/{idBuffet}")
 	public String getBuffet(@PathVariable("idChef") Long idChef, @PathVariable("idBuffet") Long idBuffet, Model model) {
