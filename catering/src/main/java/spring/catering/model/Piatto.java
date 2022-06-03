@@ -3,11 +3,11 @@ package spring.catering.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
@@ -25,12 +25,12 @@ public class Piatto {
 	@ManyToMany
 	private List<Buffet> buffet;
 
-	@OneToMany
-	@JoinColumn(name = "ingredienti")
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Ingrediente> ingredienti;
 	
 	public Piatto() {
 		this.buffet = new ArrayList<Buffet>();
+		this.ingredienti = new ArrayList<Ingrediente>();
 	}
 
 	public Long getId() {

@@ -35,7 +35,7 @@ public class AuthenticationController {
 	//vai alla pagina di login
 	@GetMapping("/login")
     public String showLoginForm(Model model) {
-        return "loginForm.html";
+        return "authentication/loginForm.html";
     }
 	
 	
@@ -64,7 +64,7 @@ public class AuthenticationController {
 	public String getCredentials(Model model) {
 		model.addAttribute("utente", new Utente());
 		model.addAttribute("credenziali", new Credentials());
-		return "register.html";
+		return "authentication/register.html";
 	}
 	
 	//configurazione form della pagina di registrazione di un utente
