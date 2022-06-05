@@ -1,8 +1,46 @@
-body {
-	font-family: Ubuntu;
+.navbar-dark {
+	background: black;
 }
 
-input, button {
+.navbar-collapse{
+	justify-content: right;
+}
+
+.navbar-nav {
+	margin-right: 25%;
+}
+
+.navButton {
+	justify-content: flex-end;
+}
+
+.navButton2 {
+	margin-left: 15px;
+	color: blue;
+	border-color: blue;
+}
+
+.navButton2:hover {
+	border-color: blue;
+	background-color: blue;
+}
+
+.navbar-collapse ul {
+    background-color: black;
+}
+   
+/* LOGO */
+.navbar-brand {
+    font-size: 25px;
+    justify-content: left
+}
+
+body {
+	font-family: Ubuntu;
+	margin: 0;
+}
+
+input {
     font-family: Ubuntu;
 }
 
@@ -24,19 +62,15 @@ input, button {
 	background-color: #403866;
 }
 
-.logincontainer {
+.logincontainer, .contatti{
 	width: 100%;
 	display: flex;
     justify-content: center; /* stessa cosa di text align per i contenitori */
 	align-items: center;
 }
 
-.logincontainer .itemLogin{
+.logincontainer .itemLogin, .contattiItem{
 	padding: 20px;
-}
-
-.title {
-    margin-top: 120px;
 }
 
 .logincontainer input {
@@ -68,7 +102,7 @@ input:focus-visible {
     width: 2px;
     opacity: .8;
     background-color: #858f96;
-    margin: 0 71px;
+    margin: 50px 0% 50px 5%;
 }
 
 a {
@@ -96,20 +130,49 @@ a {
     width: 18px;
 }
 
-.navbar {
+.homepage {
+    display: flexbox;
+}
+
+.image {
+    width: 100%;
     margin: 0;
-    padding: 20px;
-    overflow: hidden;
-    background-color: #333;
 }
 
-.navbar a {
+.button {
+    border-radius: 5px;
+    background-color: #827ffe;
+    width: 100%;
+    height: 30px;
+    border: none;
+    transition-duration: 0.4s;
     color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+    justify-content: right;
 }
 
-.navbar a:hover {
-    background-color: #111;
+.button:hover {
+	background-color: #403866;
 }
+
+.right {
+    width: 5%;
+}
+
+.map {
+	margin-top: 20px;
+	margin-bottom: 30px;
+	border-style: outset;
+	border-width: 5px;
+	margin-right: 20px;
+}
+
+.contatti {
+	background-color: #a39582;
+}
+
+.classe {
+	color: white;
+	font-size: 20px;
+	text-align: center;
+}
+
