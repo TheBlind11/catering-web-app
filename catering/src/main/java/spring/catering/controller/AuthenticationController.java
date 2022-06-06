@@ -38,6 +38,12 @@ public class AuthenticationController {
         return "authentication/loginForm.html";
     }
 	
+	//vai alla pagina di logout
+	@GetMapping("/logout")
+	public String logout(Model model) {
+		return "index.html";
+	}
+	
 	
 	//vai alla pagin index (o admin/dashboard) dopo il login
 	@GetMapping("/default")

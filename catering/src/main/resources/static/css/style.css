@@ -25,6 +25,16 @@
 	background-color: blue;
 }
 
+.navButton3 {
+	color: red;
+	border-color: red;
+}
+
+.navButton3:hover {
+	border-color: red;
+	background-color: red;
+}
+
 .navbar-collapse ul {
     background-color: black;
 }
@@ -33,6 +43,27 @@
 .navbar-brand {
     font-size: 25px;
     justify-content: left
+}
+
+.container-fluid {
+	background: black;
+	margin: 0px;
+	color: white;
+	font-size: 20px;
+}
+
+.container {
+	padding: 30px 50px 50px 50px;
+}
+
+.title {
+	text-align: center; 
+	margin: 40px 0px;
+}
+
+.contattiText {
+	padding: 80px 0px 60px 0px;
+	text-align: center;
 }
 
 body {
@@ -102,7 +133,10 @@ input:focus-visible {
     width: 2px;
     opacity: .8;
     background-color: #858f96;
-    margin: 50px 0% 50px 5%;
+}
+
+.dividerContatti {
+	margin: 50px 0px 50px 50px;
 }
 
 a {
@@ -164,15 +198,5 @@ a {
 	border-style: outset;
 	border-width: 5px;
 	margin-right: 20px;
-}
-
-.contatti {
-	background-color: #a39582;
-}
-
-.classe {
-	color: white;
-	font-size: 20px;
-	text-align: center;
 }
 

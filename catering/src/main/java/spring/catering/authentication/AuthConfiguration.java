@@ -64,7 +64,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter{
             .logoutUrl("/logout")
             
             //in caso di successo, si viene reindirizzati all'index
-            .logoutSuccessUrl("/index")
+            .logoutSuccessUrl("/")
             
             .invalidateHttpSession(true)
             .deleteCookies("JSESSIONID")

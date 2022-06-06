@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:security="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 	<meta charset="UTF-8" />
 	<!-- bootstrap core css -->
@@ -49,8 +49,9 @@
     		</ul>
     		
     		<div class="nav-item navButton">
-      			<a class="btn btn-outline-success my-2 my-sm-0" th:href=@{/login}>Login</a>
-				<a class="btn btn-outline-info my-2 my-sm-0 navButton2" th:href=@{/register}>Register</a>
+      			<a sec:authorize="!isAuthenticated()" class="btn btn-outline-success my-2 my-sm-0" th:href=@{/login}>Login</a>
+				<a sec:authorize="!isAuthenticated()" class="btn btn-outline-info my-2 my-sm-0 navButton2" th:href=@{/register}>Register</a>
+				<a sec:authorize="isAuthenticated()" class="btn btn-outline-success my-2 my-sm-0 navButton3" th:href=@{/logout}>Logout</a>
       		</div>
     		
  	 	</div>
@@ -61,10 +62,10 @@
 		<img src="/images/catering banner.png" class="image">
 	</div>
 	
-	<section id="foot" class="container-fluid classe" style="background: black; margin: 0px;">
-		<div class="container" style="padding: 30px 50px 50px 50px">
+	<section id="foot" class="container-fluid">
+		<div class="container">
 	
-			<div align="center" style="margin: 40px 0px"><h1>Contattaci</h1></div>
+			<div class="title"><h1>Contattaci</h1></div>
 	
 			<div class="row">
 				<div class="col col-md-5">
@@ -72,10 +73,10 @@
 				</div>
 			
 				<div class="col col-sm-2">
-					<div class="divider"></div>
+					<div class="divider dividerContatti"></div>
 				</div>
 			
-				<div class="col col-md-5" style="padding: 80px 0px 60px 0px">
+				<div class="col col-md-5 contattiText">
 				Via Leonardo Mellano 40, 00125, Roma<br>
 				<a href = "mailto:mat.cardilli@stud.uniroma3.it">mat.cardilli@stud.uniroma3.it</a><br>
 				Cell.: +393491920021<br>
