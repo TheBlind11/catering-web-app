@@ -17,6 +17,8 @@ import spring.catering.controller.validator.CredentialsValidator;
 import spring.catering.controller.validator.UtenteValidator;
 import spring.catering.model.Credentials;
 import spring.catering.model.Utente;
+import spring.catering.service.BuffetService;
+import spring.catering.service.ChefService;
 import spring.catering.service.CredentialsService;
 
 @Controller
@@ -30,6 +32,12 @@ public class AuthenticationController {
 	
 	@Autowired
 	private UtenteValidator uv;
+	
+	@Autowired
+	private ChefService chefs;
+	
+	@Autowired 
+	private BuffetService bs;
 	
 	
 	//vai alla pagina di login
@@ -54,6 +62,9 @@ public class AuthenticationController {
 		if(credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
 			return "admin/dashboard.html";
 		}
+		
+		model.addAttribute("chefs", this.chefs.findAllChef());
+		model.addAttribute("buffetList", this.bs.findAll());
 
 		return "index.html";
 	}

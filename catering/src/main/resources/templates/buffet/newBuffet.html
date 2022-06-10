@@ -31,9 +31,12 @@
 			</form>
 
 			<footer>
-				<a th:href="@{/default}">Home</a>
+				<a th:href="@{/}">Home</a>
 			</footer>
 		</div>
 	</div>
+	
+	<div th:replace="fragments/base.html :: script"></div>
+	
 </body>
 </html>
