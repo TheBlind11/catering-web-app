@@ -26,6 +26,7 @@
 }
 
 .navButton3 {
+	margin-left: 94px;
 	color: red;
 	border-color: red;
 }
@@ -33,6 +34,12 @@
 .navButton3:hover {
 	border-color: red;
 	background-color: red;
+}
+
+@media screen and (max-width: 992px){
+	.navButton3 {
+		margin-left: 0px;
+	}
 }
 
 .navbar-collapse ul {

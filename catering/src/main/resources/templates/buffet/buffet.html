@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-	<meta charset="UTF-8" />
-	<link href="/css/index.css" rel="stylesheet">
-	<title>Catering Webapp</title>
-</head>
+<head th:replace="fragments/base.html :: headerfiles(title='Buffet')"></head>
 <body>
 	<header th:replace="fragments/base.html :: navbar"></header>
 	
@@ -19,12 +15,11 @@
 			<span th:text="${buffet.descrizione}">Buffet a base di...</span> 
 			<span th:text="${buffet.chef.nome} + ' ' + ${buffet.chef.cognome}">Barbieri</span> 
 			<a th:href="@{/buffet} + '/' + ${buffet.id} + @{/elencoPiatti}">ELENCO PIATTI</a>
-			<a th:href="@{/buffet} + '/' + ${buffet.id} + @{/aggiungiPiatto}">AGGIUNGI PIATTO</a>
+			<a sec:authorize="hasAuthority('ADMIN')" th:href="@{/buffet} + '/' + ${buffet.id} + @{/aggiungiPiatto}">AGGIUNGI PIATTO</a>
 		</div>
 	</div>
-	<footer>
-		<a th:href="@{/}">Home</a>
-	</footer>
+	
+	<section th:replace="fragments/base.html :: contatti"></section>
 	
 	<div th:replace="fragments/base.html :: script"></div>
 	

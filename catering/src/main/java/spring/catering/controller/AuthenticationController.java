@@ -59,8 +59,9 @@ public class AuthenticationController {
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Credentials credentials = cs.getCredentials(userDetails.getUsername());
 		
+		//superfluo perchè non uso una dashboard diversa per admin
 		if(credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-			return "admin/dashboard.html";
+			return "index.html";
 		}
 		
 		model.addAttribute("chefs", this.chefs.findAllChef());

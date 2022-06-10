@@ -13,8 +13,8 @@
 		<ul>
 			<li th:each="ingrediente : ${ingredienti}">
 			<a th:href="@{'/piatto' + '/' + ${piatto.id} + '/ingrediente' + '/' + ${ingrediente.id}}" th:text="${ingrediente.nome}">Carbonara</a>
-			<a th:href="@{'/piatto' + '/' + ${piatto.id} + '/modificaIngrediente' + '/' + ${ingrediente.id}}">Modifica</a>
-			<a th:href="@{'/piatto' + '/' + ${piatto.id} + '/eliminaIngrediente' + '/' + ${ingrediente.id}}">Cancella</a></li>
+			<a sec:authorize="hasAuthority('ADMIN')" th:href="@{'/piatto' + '/' + ${piatto.id} + '/modificaIngrediente' + '/' + ${ingrediente.id}}">Modifica</a>
+			<a sec:authorize="hasAuthority('ADMIN')" th:href="@{'/piatto' + '/' + ${piatto.id} + '/eliminaIngrediente' + '/' + ${ingrediente.id}}">Cancella</a></li>
 		</ul>
 
 	</div>
