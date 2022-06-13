@@ -31,6 +31,7 @@ public class ChefController {
 	public String getChef(@PathVariable("id") Long id, Model model) {
 		Chef chef = cs.findById(id).get();
 		model.addAttribute("chef", chef);
+
 		return "chef/chef.html";
 	}
 	

@@ -4,21 +4,30 @@
 <body>
 	<header th:replace="fragments/base.html :: navbar"></header>
 	
-	<div>
-		<img src="/images/banner chef.webp" class="image">
+	<div class="back backgroundChef">
+		<span style="text-align: center; font-size: 150px; margin-top: -20px">Chef</span>
+		<span style="text-align: center; font-size: 100px" th:text="${chef.nome} + ' ' + ${chef.cognome}">Paolo</span> 
+		Nazionalita': <span th:text="${chef.nazionalita}">Italia</span>
+		<a sec:authorize="hasAuthority('ADMIN')" th:href="@{/chef} + '/' + ${chef.id} + @{/aggiungiBuffet}">AGGIUNGI BUFFET</a>
 	</div>
 
-	<div>
-		<h4>Dettagli Chef</h4>
-		<div>
-			<span th:text="${chef.nome}">Paolo</span> 
-			<span th:text="${chef.cognome}">Rossi</span> 
-			<span th:text="${chef.nazionalita}">Italia</span>
-			<a th:href="@{/chef} + '/' + ${chef.id} + @{/elencoBuffet}">ELENCO BUFFET</a>
-			<a sec:authorize="hasAuthority('ADMIN')" th:href="@{/chef} + '/' + ${chef.id} + @{/aggiungiBuffet}">AGGIUNGI BUFFET</a>
+	
+	<div class="container">
+		<div class="row">
+			<div class="col col-lg-4" th:each="buffet : ${chef.buffet}">
+				<div class="card">
+  					<img src="/images/buffetIcon.png" class="card-img-top" alt="...">
+  					<div class="card-body">
+    					<h5 class="card-title" th:text="${buffet.nome}"></h5>
+    					<p class="card-text" th:text="${buffet.descrizione}"></p>
+    					<a th:href="@{'/buffet' + '/' + ${buffet.id}}">Visualizza Buffet</a>
+  					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	
+	<br><br><br>
 	<section th:replace="fragments/base.html :: contatti"></section>
 	
 	<div th:replace="fragments/base.html :: script"></div>

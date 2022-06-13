@@ -24,22 +24,12 @@
         			<a class="nav-link" th:href="@{/}">Home</a>
       			</li>
       			
-      			<li class="nav-item dropdown">
-        			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          			I nostri Chef
-        			</a>
-        			<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          				<a class="dropdown-item" th:each="chef : ${chefs}" th:href="@{'/chef' + '/' + ${chef.id}}" th:text="${chef.nome} + ' ' + ${chef.cognome}">Chef Barbieri</a>
-        			</div>
+      			<li class="nav-item">
+        			<a class="nav-link" th:href="@{/elencoChef}">I nostri Chef</a>
       			</li>
       			
-      			<li class="nav-item dropdown">
-        			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          			I nostri buffet
-        			</a>
-        			<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          				<a class="dropdown-item" th:each="buffet : ${buffetList}" th:href="@{'/buffet' + '/' + ${buffet.id}}" th:text="${buffet.nome}">Buffet di Roma</a>
-        			</div>
+      			<li class="nav-item">
+        			<a class="nav-link" th:href="@{/elencoBuffet}">I nostri Buffet</a>
       			</li>
       			
       			<li class="nav-item">

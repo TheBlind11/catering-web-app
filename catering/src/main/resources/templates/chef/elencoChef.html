@@ -3,21 +3,29 @@
 <head th:replace="fragments/base.html :: headerfiles(title='ElencoChef')"></head>
 <body>
 	<header th:replace="fragments/base.html :: navbar"></header>
-	<div>
-		<h4>Chef inseriti</h4>
-		
-		<ul>
-			<li th:each="chef : ${chefs}">
-			<a th:href="@{'/chef' + '/' + ${chef.id}}" th:text="${chef.nome} + ' ' + ${chef.cognome}">Paolo Rossi</a>
-			<a sec:authorize="hasAuthority('ADMIN')" th:href="@{'/modificaChef' + '/' + ${chef.id}}">Modifica</a>
-			<a sec:authorize="hasAuthority('ADMIN')" th:href="@{'/deleteChef' + '/' + ${chef.id}}">Cancella</a></li>
-		</ul>
-
-	</div>
-	<footer>
-		<a th:href="@{/}">Home</a>
-	</footer>
 	
+	<div class="back backgroundChef" style="padding: 300px !important;">
+		<span style="background-color: #574336d9; text-align:center; font-size: 100px; text-align: center; padding: 0px;">I NOSTRI CHEF</span>
+	</div>
+	
+	
+	<div class="container">
+		<div class="row">
+			<div class="col col-lg-4" th:each="chef : ${chefs}">
+				<div class="card">
+  					<img src="/images/chefIcon.png" class="card-img-top" alt="...">
+  					<div class="card-body">
+    					<h5 class="card-title" th:text="${chef.nome} + ' ' + ${chef.cognome}"></h5>
+    					<p class="card-text" th:text="${chef.nazionalita}"></p>
+    					<a th:href="@{'/chef' + '/' + ${chef.id}}">Visualizza Chef</a>
+  					</div>
+  				</div>
+			</div>
+		</div>
+	</div>
+
+	<section th:replace="fragments/base.html :: contatti"></section>
+
 	<div th:replace="fragments/base.html :: script"></div>
 	
 </body>

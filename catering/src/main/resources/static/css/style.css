@@ -52,6 +52,48 @@
     justify-content: left
 }
 
+@font-face {
+	font-family: bellfort;
+	src: url("/fonts/bellFort/BellfortDrawRough-Thin.otf");
+}
+
+.back {
+	padding: 25%;
+	margin: 0;
+    font-size: 100px;
+    width: 100%;
+    font-family: bellfort;
+	color: white;
+}
+
+.backgroundCatering {
+	background-image: url("/images/cateringBanner.png");
+	background-size: cover;
+    background-repeat: no-repeat;
+    
+}
+
+.backgroundChef {
+	background-image: url("/images/bannerChef.webp");
+	background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.backgroundBuffet {
+	background-image: url("/images/buffetBanner.png");
+	background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.card {
+	border-radius: 10px;
+	padding: 30px;
+	margin: 30px;
+	border-width: 4px;
+	border-color: black;
+	text-align: center;
+}
+
 .container-fluid {
 	background: black;
 	margin: 0px;
@@ -173,11 +215,6 @@ a {
 
 .homepage {
     display: flexbox;
-}
-
-.image {
-    width: 100%;
-    margin: 0;
 }
 
 .button {

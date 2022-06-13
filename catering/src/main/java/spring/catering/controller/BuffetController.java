@@ -48,29 +48,6 @@ public class BuffetController {
 		return "buffet/buffet.html";
 	}
 	
-	//visualizza un buffet di uno specifico chef
-	@GetMapping("/chef/{idChef}/buffet/{idBuffet}")
-	public String getBuffet(@PathVariable("idChef") Long idChef, @PathVariable("idBuffet") Long idBuffet, Model model) {
-		Chef chef = this.cs.findById(idChef).get();
-		Buffet buffet = this.bs.findById(idBuffet).get();
-		
-		model.addAttribute("chef", chef);
-		model.addAttribute("buffet", buffet);
-		
-		return "buffet/buffet.html";
-	}
-	
-	//visualizza l'elenco dei buffet di uno schef
-	@GetMapping("/chef/{id}/elencoBuffet")
-	public String showBuffetList(@PathVariable("id") Long id, Model model) {
-		Chef chef = this.cs.findById(id).get();
-		
-		model.addAttribute("chef", chef);
-		model.addAttribute("buffetList", chef.getBuffet());
-		
-		return "buffet/elencoBuffetDelloChef.html";
-	}
-	
 	//vai alla pagine newBuffet per aggiungere un nuovo buffet ad uno chef
 	@GetMapping("/chef/{id}/aggiungiBuffet") 
 	public String newBuffet(@PathVariable("id") Long id, Model model) {

@@ -4,18 +4,31 @@
 <body>
 	<header th:replace="fragments/base.html :: navbar"></header>
 	
-	<div>
-		<img src="/images/banner buffet.jpg" class="image">
+	<div class="back backgroundBuffet">
+		<span style="background-color: #574336d9; padding: 0px !important; text-align:center; font-size: 100px" align="center" th:text="${buffet.nome}">Paolo</span> 
+		<span style="background-color: #574336d9; padding: 0px !important; text-align:center; font-size: 100px" align="center" th:text="${buffet.descrizione}">Buffet a base di...</span> 
+		<span style="background-color: #574336d9; padding: 0px !important; text-align:center; font-size: 100px" align="center" th:text="${buffet.chef.nome} + ' ' + ${buffet.chef.cognome}">Barbieri</span>
+		<a sec:authorize="hasAuthority('ADMIN')" th:href="@{/buffet} + '/' + ${buffet.id} + @{/aggiungiPiatto}">AGGIUNGI PIATTO</a>
 	</div>
 	
-	<div>
-		<h4>Dettagli Buffet</h4>
-		<div>
-			<span th:text="${buffet.nome}">Paolo</span> 
-			<span th:text="${buffet.descrizione}">Buffet a base di...</span> 
-			<span th:text="${buffet.chef.nome} + ' ' + ${buffet.chef.cognome}">Barbieri</span> 
-			<a th:href="@{/buffet} + '/' + ${buffet.id} + @{/elencoPiatti}">ELENCO PIATTI</a>
-			<a sec:authorize="hasAuthority('ADMIN')" th:href="@{/buffet} + '/' + ${buffet.id} + @{/aggiungiPiatto}">AGGIUNGI PIATTO</a>
+	<div class="container">
+		<div class="row">
+			<div class="col col-lg-4" th:each="piatto : ${buffet.piatti}">
+				<div class="card">
+  					<img src="/images/cloche.webp" class="card-img-top" alt="...">
+  					<div class="card-body">
+    					<h5 class="card-title" th:text="${piatto.nome}"></h5>
+    					<p class="card-text" th:text="${piatto.descrizione}"></p>
+    					<ul>
+    						<li th:each="ingrediente : ${piatto.ingredienti}">
+    							<a th:href="@{'/piatto' + '/' + ${piatto.id} + '/ingrediente' + '/' + ${ingrediente.id}}" th:text="${ingrediente.nome}">Uovo</a>
+    							<a sec:authorize="hasAuthority('ADMIN')" th:href="@{'/piatto' + '/' + ${piatto.id} + '/modificaIngrediente' + '/' + ${ingrediente.id}}">Modifica</a>
+								<a sec:authorize="hasAuthority('ADMIN')" th:href="@{'/piatto' + '/' + ${piatto.id} + '/eliminaIngrediente' + '/' + ${ingrediente.id}}">Cancella</a>
+							</li>
+    					</ul>
+  					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	
