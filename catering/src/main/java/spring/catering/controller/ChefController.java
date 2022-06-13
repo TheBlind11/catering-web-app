@@ -68,6 +68,7 @@ public class ChefController {
 	@GetMapping("/deleteChef/{id}")
 	public String deleteChef(@PathVariable("id") Long id, Model model) {
 		this.cs.delete(id);
+		model.addAttribute("chefs", this.cs.findAllChef());
 		return "chef/elencoChef.html";
 	}
 	

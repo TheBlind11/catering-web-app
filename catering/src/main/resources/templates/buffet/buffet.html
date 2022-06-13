@@ -15,15 +15,15 @@
 		<div class="row">
 			<div class="col col-lg-4" th:each="piatto : ${buffet.piatti}">
 				<div class="card">
-  					<img src="/images/cloche.webp" class="card-img-top" alt="...">
+  					<img src="/images/cloche.png" class="card-img-top" alt="...">
   					<div class="card-body">
     					<h5 class="card-title" th:text="${piatto.nome}"></h5>
     					<p class="card-text" th:text="${piatto.descrizione}"></p>
     					<ul>
     						<li th:each="ingrediente : ${piatto.ingredienti}">
     							<a th:href="@{'/piatto' + '/' + ${piatto.id} + '/ingrediente' + '/' + ${ingrediente.id}}" th:text="${ingrediente.nome}">Uovo</a>
-    							<a sec:authorize="hasAuthority('ADMIN')" th:href="@{'/piatto' + '/' + ${piatto.id} + '/modificaIngrediente' + '/' + ${ingrediente.id}}">Modifica</a>
-								<a sec:authorize="hasAuthority('ADMIN')" th:href="@{'/piatto' + '/' + ${piatto.id} + '/eliminaIngrediente' + '/' + ${ingrediente.id}}">Cancella</a>
+    							<a class="btn btn-outline-success my-2 my-sm-0 cardButtonTeal" sec:authorize="hasAuthority('ADMIN')" th:href="@{'/piatto' + '/' + ${piatto.id} + '/modificaIngrediente' + '/' + ${ingrediente.id}}">Modifica</a>
+								<a class="btn btn-ouline-success my-2 my-sm-0 cardButtonRed" sec:authorize="hasAuthority('ADMIN')" th:href="@{'/piatto' + '/' + ${piatto.id} + '/eliminaIngrediente' + '/' + ${ingrediente.id}}">Cancella</a>
 							</li>
     					</ul>
   					</div>

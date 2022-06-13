@@ -50,7 +50,7 @@ public class PiattoController {
 		model.addAttribute("buffet", buffet);
 		model.addAttribute("piatti", buffet.getPiatti());
 		
-		return "piatto/elencoPiattiDelBuffet.html";
+		return "buffet/buffet.html";
 	}
 	
 	//vai alla pagina newPiatto per aggiungere un nuovo piatto ad uno specifico buffet
@@ -78,7 +78,7 @@ public class PiattoController {
 			model.addAttribute("buffet", buffet);
 			model.addAttribute("piatti", piatti);
 			
-			return "piatto/elencoPiattiDelBuffet.html";
+			return "buffet/buffet.html";
 		}
 		
 		return "piatto/newPiatto.html";
@@ -96,7 +96,7 @@ public class PiattoController {
 		model.addAttribute("buffet", buffet);
 		model.addAttribute("piatti", piatti);
 		
-		return "piatto/elencoPiattiDelBuffet.html";
+		return "buffet/buffet.html";
 	}
 	
 	//vai alla pagina di modifica di un piatto di un buffet
@@ -124,7 +124,7 @@ public class PiattoController {
 			this.ps.update(piatto, newPiatto);
 			model.addAttribute("buffet", buffet);
 			model.addAttribute("piatti", buffet.getPiatti());
-			return "piatto/elencoPiattiDelBuffet.html";
+			return "buffet/buffet.html";
 		}
 		
 		return "piatto/modificaPiatto.html";

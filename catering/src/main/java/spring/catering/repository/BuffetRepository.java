@@ -10,7 +10,7 @@ import spring.catering.model.Chef;
 
 public interface BuffetRepository extends CrudRepository<Buffet, Long> {
 	
-	public boolean existsByNome(String nome);
+	public boolean existsByNomeAndDescrizione(String nome, String descrizione);
 
 	public Optional<Buffet> findByNome(String Nome);
 	

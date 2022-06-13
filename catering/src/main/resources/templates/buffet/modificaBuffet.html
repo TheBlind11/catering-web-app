@@ -13,7 +13,7 @@
 
 	<div class="logincontainer">
 		<div class="itemLogin">
-			<form th:action="@{/chef} + '/' + ${chef.id} + @{/modificaBuffet} + '/' + ${buffet.id}" method="post">
+			<form th:action="@{/modificaBuffet} + '/' + ${buffet.id}" method="post">
 				<div>
 					<input type="text" placeholder="Nome" required th:field="${buffet.nome}" />
 					<!-- <span th:if="${#fields.hasErrors('buffet.nome')}" th:errors="${buffet.nome}"></span> -->
@@ -25,7 +25,7 @@
 				</div>
 
 				<div>
-					<button class="loginbutton" type="submit">Conferma</button>
+					<button class="buttonForm" type="submit">Conferma</button>
 				</div>
 			</form>
 		</div>

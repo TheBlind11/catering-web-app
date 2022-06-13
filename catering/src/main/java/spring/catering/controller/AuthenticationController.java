@@ -33,12 +33,6 @@ public class AuthenticationController {
 	@Autowired
 	private UtenteValidator uv;
 	
-	@Autowired
-	private ChefService chefs;
-	
-	@Autowired 
-	private BuffetService bs;
-	
 	
 	//vai alla pagina di login
 	@GetMapping("/login")
@@ -60,17 +54,14 @@ public class AuthenticationController {
 		Credentials credentials = cs.getCredentials(userDetails.getUsername());
 		
 		//superfluo perchè non uso una dashboard diversa per admin
-		if(credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-			return "index.html";
-		}
-		
-		model.addAttribute("chefs", this.chefs.findAllChef());
-		model.addAttribute("buffetList", this.bs.findAll());
+		/* if(credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+			return "admin/dashboard.html";
+		} */
 
 		return "index.html";
 	}
 	
-	//vai alla pagin index (o admin/dashboard) dopo il login con OAuth ***DA MODELLARE BENE***
+	//vai alla pagin index (o admin/dashboard) dopo il login con OAuth ***DA MODELLARE BENE SE SI RITIENE UTILE***
 	@GetMapping("/defaultOauth")
 	public String oauthLogin(Model model) {
 		OAuth2User userDetails = (OAuth2User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();

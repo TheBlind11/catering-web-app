@@ -17,7 +17,7 @@ public class BuffetService {
 	private BuffetRepository br;
 
 	public boolean alreadyExists(Buffet target) {
-		return this.br.existsByNome(target.getNome());
+		return this.br.existsByNomeAndDescrizione(target.getNome(), target.getDescrizione());
 	}
 
 	public Optional<Buffet> findById(Long id) {

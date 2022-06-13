@@ -1,3 +1,4 @@
+/* NAVBAR */
 .navbar-dark {
 	background: black;
 }
@@ -46,17 +47,19 @@
     background-color: black;
 }
    
-/* LOGO */
+/* LOGO NAVBAR */
 .navbar-brand {
     font-size: 25px;
     justify-content: left
 }
 
+/* FONT BANNER */
 @font-face {
 	font-family: bellfort;
 	src: url("/fonts/bellFort/BellfortDrawRough-Thin.otf");
 }
 
+/* BANNER */
 .back {
 	padding: 25%;
 	margin: 0;
@@ -66,6 +69,7 @@
 	color: white;
 }
 
+/* BANNER CATERING*/
 .backgroundCatering {
 	background-image: url("/images/cateringBanner.png");
 	background-size: cover;
@@ -73,18 +77,21 @@
     
 }
 
+/* BANNER CHEF*/
 .backgroundChef {
 	background-image: url("/images/bannerChef.webp");
 	background-size: cover;
     background-repeat: no-repeat;
 }
 
+/* BANNER BUFFET*/
 .backgroundBuffet {
 	background-image: url("/images/buffetBanner.png");
 	background-size: cover;
     background-repeat: no-repeat;
 }
 
+/* GENERIC CARD */
 .card {
 	border-radius: 10px;
 	padding: 30px;
@@ -92,8 +99,47 @@
 	border-width: 4px;
 	border-color: black;
 	text-align: center;
+	box-shadow: 20px;
 }
 
+/* CARD BUTTONS */
+.cardButton {
+	border-color: orange;
+	background-color: orange;
+	color: white;
+}
+
+.cardButton:hover {
+	border-color: #b97800;
+	background-color: #b97800;
+	color: white;
+}
+
+.cardButtonTeal {
+	border-color: teal;
+	background-color: teal;
+	color: white;
+}
+
+.cardButtonTeal:hover {
+	border-color: #005b5b;
+	background-color: #005b5b;
+	color: white;
+}
+
+.cardButtonRed {
+	border-color: red;
+	background-color: red;
+	color: white;
+}
+
+.cardButtonRed:hover {
+	border-color: #970000;
+	background-color: #970000;
+	color: white;
+}
+
+/* CONTATTI */
 .container-fluid {
 	background: black;
 	margin: 0px;
@@ -124,7 +170,7 @@ input {
     font-family: Ubuntu;
 }
 
-.loginbutton {
+.buttonForm {
     font-family: Ubuntu;
     font-size: 16px;
     color: #fff;
@@ -138,7 +184,7 @@ input {
     border: none;
 }
 
-.loginbutton:hover {
+.buttonForm:hover {
 	background-color: #403866;
 }
 
@@ -170,26 +216,40 @@ input:focus-visible {
     padding: 20px 35px;
     border-radius: 5px;
     background-color: rgb(230, 225, 225);
-    margin-bottom: 20px;
     font-size: 14px;
     border: none;
     text-align: center;
     width: 100%;
 }
 
+.oauthButton {
+	margin-bottom: 50px;
+	min-width: 232px;
+}
+
 .divider {
-    height: 200px;
+    height: 170px;
     width: 2px;
     opacity: .8;
     background-color: #858f96;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 .dividerContatti {
-	margin: 50px 0px 50px 50px;
+	margin: 50px 0px 50px 100px;
 }
 
 a {
+	text-decoration: none;
+}
+
+a:hover {
     text-decoration: none;
+}
+
+.oauthButton a:visited {
+	color: black;
 }
 
 .logo {
