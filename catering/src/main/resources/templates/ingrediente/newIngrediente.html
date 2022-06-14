@@ -14,7 +14,7 @@
 
 	<div class="logincontainer">
 		<div class="itemLogin">
-			<form th:action="@{/piatto} + '/' + ${piatto.id} + @{/aggiungiIngrediente}" method="post">
+			<form th:action="@{/buffet} + '/' + ${buffet.id} + @{/piatto} + '/' + ${piatto.id} + @{/aggiungiIngrediente}" method="post">
 				<div>
 					<input type="text" placeholder="Nome" required th:field="${ingrediente.nome}" />
 					<!-- <span th:if="${#fields.hasErrors('ingrediente.nome')}" th:errors="${ingrediente.nome}"></span> -->

@@ -70,7 +70,6 @@ public class PiattoController {
 		this.pv.validate(piatto, bindingResult);
 		
 		if(!bindingResult.hasErrors()) {
-			piatto.getBuffet().add(buffet);
 			List<Piatto> piatti = buffet.getPiatti();
 			piatti.add(piatto);
 			
@@ -89,12 +88,10 @@ public class PiattoController {
 	public String deletePiatto(@PathVariable("idBuffet") Long idBuffet, @PathVariable("idPiatto") Long idPiatto, Model model) {
 		Buffet buffet = this.bs.findById(idBuffet).get();
 		Piatto piatto = this.ps.findById(idPiatto).get();
-		List<Piatto> piatti = buffet.getPiatti();
-		piatti.remove(piatto);
 		
 		this.ps.delete(piatto);
 		model.addAttribute("buffet", buffet);
-		model.addAttribute("piatti", piatti);
+		model.addAttribute("piatti", buffet.getPiatti());
 		
 		return "buffet/buffet.html";
 	}

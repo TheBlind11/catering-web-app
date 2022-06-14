@@ -4,33 +4,49 @@
 <body>
 	<header th:replace="fragments/base.html :: navbar"></header>
 	
-	<div class="back backgroundBuffet">
-		<span style="background-color: #574336d9; padding: 0px !important; text-align:center; font-size: 100px" align="center" th:text="${buffet.nome}">Paolo</span> 
-		<span style="background-color: #574336d9; padding: 0px !important; text-align:center; font-size: 100px" align="center" th:text="${buffet.descrizione}">Buffet a base di...</span> 
-		<span style="background-color: #574336d9; padding: 0px !important; text-align:center; font-size: 100px" align="center" th:text="${buffet.chef.nome} + ' ' + ${buffet.chef.cognome}">Barbieri</span>
-		<a sec:authorize="hasAuthority('ADMIN')" th:href="@{/buffet} + '/' + ${buffet.id} + @{/aggiungiPiatto}">AGGIUNGI PIATTO</a>
+	<div>
+		<img src="/images/buffetBanner.png" class="img-fluid back" alt="Responsive image">
 	</div>
 	
 	<div class="container">
 		<div class="row">
 			<div class="col col-lg-4" th:each="piatto : ${buffet.piatti}">
 				<div class="card">
-  					<img src="/images/cloche.png" class="card-img-top" alt="...">
+					<div class="card-header border-0 rounded-0 bg-white">
+  						<img src="/images/cloche.png" class="card-img-top" alt="...">
+  					</div>
+  					
   					<div class="card-body">
     					<h5 class="card-title" th:text="${piatto.nome}"></h5>
     					<p class="card-text" th:text="${piatto.descrizione}"></p>
-    					<ul>
-    						<li th:each="ingrediente : ${piatto.ingredienti}">
-    							<a th:href="@{'/piatto' + '/' + ${piatto.id} + '/ingrediente' + '/' + ${ingrediente.id}}" th:text="${ingrediente.nome}">Uovo</a>
-    							<a class="btn btn-outline-success my-2 my-sm-0 cardButtonTeal" sec:authorize="hasAuthority('ADMIN')" th:href="@{'/piatto' + '/' + ${piatto.id} + '/modificaIngrediente' + '/' + ${ingrediente.id}}">Modifica</a>
-								<a class="btn btn-ouline-success my-2 my-sm-0 cardButtonRed" sec:authorize="hasAuthority('ADMIN')" th:href="@{'/piatto' + '/' + ${piatto.id} + '/eliminaIngrediente' + '/' + ${ingrediente.id}}">Cancella</a>
-							</li>
-    					</ul>
-  					</div>
-				</div>
-			</div>
+    				</div>
+    					
+    				<div sec:authorize="hasAuthority('ADMIN')" class="card-footer bg-dark rounded">
+    					<div class="container p-0 d-flex justify-content-center align-items-center" >
+    						<div class="row m-0 d-flex justify-content-center align-items-center">
+    							<div class="col my-1 d-flex justify-content-center align-items-center">
+    								<a class="btn my-2 my-sm-0 cardButtonTeal" sec:authorize="hasAuthority('ADMIN')" th:href="@{'/buffet' + '/' + ${buffet.id} + '/modificaPiatto' + '/' + ${piatto.id}}">Modifica</a>
+    							</div>
+    							
+    							<div class="col my-1 d-flex justify-content-center align-items-center">
+    								<a class="btn my-2 my-sm-0 cardButtonRed" sec:authorize="hasAuthority('ADMIN')" th:href="@{'/buffet' + '/' + ${buffet.id} + '/eliminaPiatto' + '/' + ${piatto.id}}">Elimina</a>
+    							</div>
+    						</div>
+    					</div>
+    				</div>
+    				
+    			</div>
+    		</div>
+    	</div>
+    	
+    	<div class="row d-flex justify-content-center align-items-center my-5">
+			<a class="btn my-2 my-sm-0 btn-primary" sec:authorize="hasAuthority('ADMIN')" th:href="@{'/buffet' + '/' + ${buffet.id} + '/aggiungiPiatto'}">Aggiungi Piatto</a>
 		</div>
-	</div>
+    	
+    </div>				
+   	
+   	
+   	<!--  <a class="btn my-2 my-sm-0 cardButtonTeal" sec:authorize="hasAuthority('ADMIN')" th:href="@{'/buffet' + '/' + ${buffet.id} + '/piatto' + '/' + ${piatto.id} + '/aggiungiIngrediente'}">Aggiungi Ingrediente</a> -->
 	
 	<section th:replace="fragments/base.html :: contatti"></section>
 	

@@ -45,6 +45,7 @@ public class ChefService {
 		return tuttiChef;
 	}
 
+	@Transactional
 	public void update(Chef chef, Chef newChef) {
 		chef.setNome(newChef.getNome());
 		chef.setCognome(newChef.getCognome());

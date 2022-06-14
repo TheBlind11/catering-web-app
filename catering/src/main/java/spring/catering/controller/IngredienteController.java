@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import spring.catering.model.Buffet;
 import spring.catering.model.Ingrediente;
 import spring.catering.model.Piatto;
+import spring.catering.service.BuffetService;
 import spring.catering.service.IngredienteService;
 import spring.catering.service.PiattoService;
 
@@ -27,6 +29,9 @@ public class IngredienteController {
 	@Autowired
 	private PiattoService ps;
 	
+	@Autowired
+	private BuffetService bs;
+	
 	@GetMapping("/piatto/{id}/elencoIngredienti")
 	public String getIngredienti(@PathVariable("id") Long id, Model model) {
 		Piatto piatto = this.ps.findById(id).get();
@@ -36,18 +41,21 @@ public class IngredienteController {
 		return "ingrediente/elencoIngredientiDelPiatto.html";
 	}
 	
-	@GetMapping("/piatto/{id}/aggiungiIngrediente")
-	public String addIngrediente(@PathVariable("id") Long id, Model model) {
-		Piatto piatto = this.ps.findById(id).get();
+	@GetMapping("/buffet/{idBuffet}/piatto/{idPiatto}/aggiungiIngrediente")
+	public String addIngrediente(@PathVariable("idBuffet") Long idBuffet, @PathVariable("idPiatto") Long idPiatto, Model model) {
+		Piatto piatto = this.ps.findById(idPiatto).get();
+		Buffet buffet = this.bs.findById(idBuffet).get();
 		model.addAttribute("piatto", piatto);
+		model.addAttribute("buffet", buffet);
 		model.addAttribute("ingrediente", new Ingrediente());
 		
 		return "ingrediente/newIngrediente.html";
 	}
 	
-	@PostMapping("/piatto/{id}/aggiungiIngrediente")
-	public String addIngrediente(@PathVariable("id") Long id, @Valid @ModelAttribute Ingrediente ingrediente, BindingResult bindingResult, Model model) {
-		Piatto piatto = this.ps.findById(id).get();
+	@PostMapping("/buffet/{idBuffet}/piatto/{idPiatto}/aggiungiIngrediente")
+	public String addIngrediente(@PathVariable("idBuffet") Long idBuffet, @PathVariable("idPiatto") Long idPiatto, @Valid @ModelAttribute Ingrediente ingrediente, BindingResult bindingResult, Model model) {
+		Piatto piatto = this.ps.findById(idPiatto).get();
+		Buffet buffet = this.bs.findById(idBuffet).get();
 		
 		if(!bindingResult.hasErrors()) {
 			List<Ingrediente> ingredienti = piatto.getIngredienti();
@@ -55,49 +63,54 @@ public class IngredienteController {
 			this.ps.save(piatto);
 			model.addAttribute("piatto", piatto);
 			model.addAttribute("ingredienti", ingredienti);
+			model.addAttribute("buffet", buffet);
 			
-			return "ingrediente/elencoIngredientiDelPiatto.html";
+			return "buffet/buffet.html";
 		}
 		
 		return "ingrediente/newIngrediente.html";
 	}
 	
-	@GetMapping("/piatto/{idPiatto}/eliminaIngrediente/{idIngrediente}")
-	public String deleteIngrediente(@PathVariable("idPiatto") Long idPiatto, @PathVariable("idIngrediente") Long idIngrediente, Model model) {
+	@GetMapping("/buffet/{idBuffet}/piatto/{idPiatto}/eliminaIngrediente/{idIngrediente}")
+	public String deleteIngrediente(@PathVariable("idBuffet") Long idBuffet, @PathVariable("idPiatto") Long idPiatto, @PathVariable("idIngrediente") Long idIngrediente, Model model) {
+		Buffet buffet = this.bs.findById(idBuffet).get();
 		Piatto piatto = this.ps.findById(idPiatto).get();
 		Ingrediente ingrediente = this.is.findById(idIngrediente).get();
-		List<Ingrediente> ingredienti = piatto.getIngredienti();
-		ingredienti.remove(ingrediente);
 		this.is.delete(ingrediente);
 		
+		model.addAttribute("buffet", buffet);
 		model.addAttribute("piatto", piatto);
-		model.addAttribute("ingredienti", ingredienti);
+		model.addAttribute("ingredienti", piatto.getIngredienti());
 		
-		return "ingrediente/elencoIngredientiDelPiatto.html";
+		return "buffet/buffet.html";
 	}
 	
-	@GetMapping("/piatto/{idPiatto}/modificaIngrediente/{idIngrediente}")
-	public String modificaIngrediente(@PathVariable("idPiatto") Long idPiatto, @PathVariable("idIngrediente") Long idIngrediente, Model model) {
+	@GetMapping("/buffet/{idBuffet}/piatto/{idPiatto}/modificaIngrediente/{idIngrediente}")
+	public String modificaIngrediente(@PathVariable("idBuffet") Long idBuffet, @PathVariable("idPiatto") Long idPiatto, @PathVariable("idIngrediente") Long idIngrediente, Model model) {
+		Buffet buffet = this.bs.findById(idBuffet).get();
 		Piatto piatto = this.ps.findById(idPiatto).get();
 		Ingrediente ingrediente = this.is.findById(idIngrediente).get();
+		model.addAttribute("buffet", buffet);
 		model.addAttribute("piatto", piatto);
 		model.addAttribute("ingrediente", ingrediente);
 		
 		return "ingrediente/modificaIngrediente.html";
 	}
 	
-	@PostMapping("/piatto/{idPiatto}/modificaIngrediente/{idIngrediente}")
-	public String modificaIngrediente(@PathVariable("idPiatto") Long idPiatto, @PathVariable("idIngrediente") Long idIngrediente, 
+	@PostMapping("/buffet/{idBuffet}/piatto/{idPiatto}/modificaIngrediente/{idIngrediente}")
+	public String modificaIngrediente(@PathVariable("idBuffet") Long idBuffet, @PathVariable("idPiatto") Long idPiatto, @PathVariable("idIngrediente") Long idIngrediente, 
 									@Valid @ModelAttribute Ingrediente newIngrediente, BindingResult bindingResult, Model model) {
+		Buffet buffet = this.bs.findById(idBuffet).get();
 		Piatto piatto = this.ps.findById(idPiatto).get();
 		Ingrediente ingrediente = this.is.findById(idIngrediente).get();
 		
 		if(!bindingResult.hasErrors()) {
 			this.is.update(ingrediente, newIngrediente);
+			model.addAttribute("buffet", buffet);
 			model.addAttribute("piatto", piatto);
 			model.addAttribute("ingredienti", piatto.getIngredienti());
 			
-			return "ingrediente/elencoIngredientiDelPiatto.html";
+			return "buffet/buffet.html";
 		}
 		
 		return "ingrediente/modificaIngrediente.html";

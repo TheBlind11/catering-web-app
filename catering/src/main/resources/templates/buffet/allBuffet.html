@@ -8,27 +8,24 @@
 		<div class="text-center" style="background-color: #574336d9; font-size: 100px">I nostri Buffets</div>
 	</div>
 		
-		<div class="container">
-			<div class="row">
-				<div class="col col-lg-4" th:each="buffet : ${buffetList}">
-					<div class="card">
+	<div class="container">
+		<div class="row">
+			<div class="col col-lg-4" th:each="buffet : ${buffetList}">
+				<div class="card p-3">
+  					<div class="card-header border-0 rounded-0 bg-white">	
   						<img src="/images/buffetIcon.png" class="card-img-top" alt="...">
-  						<div class="card-body">
-    						<h5 class="card-title" th:text="${buffet.nome}"></h5>
-    						<p class="card-text" th:text="${buffet.descrizione}"></p>
-    						<div style="margin-bottom: 20px">
-    							<a class="btn btn-outline-success my-2 my-sm-0 cardButton" th:href="@{'/buffet' + '/' + ${buffet.id}}">Visualizza Buffet</a>
-    						</div>
-    						<div style="margin-bottom: 10px">
-    							<a class="btn btn-outline-success my-2 my-sm-0 cardButtonTeal" sec:authorize="hasAuthority('ADMIN')" th:href="@{'/modificaBuffet' + '/' + ${buffet.id}}">Modifica Buffet</a>
-    						</div>
-    						<a class="btn btn-ouline-success my-2 my-sm-0 cardButtonRed" sec:authorize="hasAuthority('ADMIN')" th:href="@{'/eliminaBuffet' + '/' + ${buffet.id}}">Cancella Buffet</a>
-    						
-  						</div>
-					</div>
+  					</div>
+  					
+  					<div class="card-body">
+    					<h5 class="card-title" th:text="${buffet.nome}"></h5>
+    					<p class="card-text" th:text="${buffet.descrizione}"></p>
+    					<a class="btn btn-outline-success my-2 my-sm-0 cardButton" th:href="@{'/buffet' + '/' + ${buffet.id}}">Visualizza Buffet</a>
+  					</div>
+				
 				</div>
 			</div>
 		</div>
+	</div>
 	
 	<section th:replace="fragments/base.html :: contatti"></section>
 	

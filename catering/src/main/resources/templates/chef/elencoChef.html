@@ -4,8 +4,8 @@
 <body>
 	<header th:replace="fragments/base.html :: navbar"></header>
 	
-	<div class="back backgroundChef" style="padding: 300px !important;">
-		<span style="background-color: #574336d9; text-align:center; font-size: 100px; text-align: center; padding: 0px;">I NOSTRI CHEF</span>
+	<div>
+		<img src="/images/bannerChef.png" class="img-fluid back" alt="Responsive image">
 	</div>
 	
 	
@@ -13,21 +13,38 @@
 		<div class="row">
 			<div class="col col-lg-4" th:each="chef : ${chefs}">
 				<div class="card">
-  					<img src="/images/Il mio progetto.png" class="card-img-top" alt="...">
+					<div class="card-header border-0 rounded-0 bg-white">
+  						<img src="/images/chefIcon.png" class="card-img-top" alt="...">
+  					</div>
+  					
   					<div class="card-body">
     					<h5 class="card-title" th:text="${chef.nome} + ' ' + ${chef.cognome}"></h5>
     					<p class="card-text" th:text="${chef.nazionalita}"></p>
-    					<div>
-    						<a class="btn btn-outline-success my-2 my-sm-0 cardButton" th:href="@{'/chef' + '/' + ${chef.id}}">Visualizza Chef</a>
+    					<a class="btn my-2 my-sm-0 cardButton" th:href="@{'/chef' + '/' + ${chef.id}}">Visualizza Chef</a>
+    				</div>
+    				
+    				<div sec:authorize="hasAuthority('ADMIN')" class="card-footer bg-dark rounded">
+    					<div class="container p-0 d-flex justify-content-center align-items-center" >
+    						<div class="row m-0 d-flex justify-content-center align-items-center">
+    							<div class="col my-1 d-flex justify-content-center align-items-center">
+    								<a class="btn my-2 my-sm-0 cardButtonTeal" sec:authorize="hasAuthority('ADMIN')" th:href="@{'/modificaChef' + '/' + ${chef.id}}">Modifica</a>
+    							</div>
+    							
+    							<div class="col my-1 d-flex justify-content-center align-items-center">
+    								<a class="btn my-2 my-sm-0 cardButtonRed" sec:authorize="hasAuthority('ADMIN')" th:href="@{'/deleteChef' + '/' + ${chef.id}}">Elimina</a>
+    							</div>
+    						</div>
     					</div>
-    					<div>
-    						<a class="btn btn-outline-success my-2 my-sm-0 cardButtonTeal" sec:authorize="hasAuthority('ADMIN')" th:href="@{'/modificaChef' + '/' + ${chef.id}}">Modifica</a>
-    					</div>
-    					<a class="btn btn-outline-success my-2 my-sm-0 cardButtonRed" sec:authorize="hasAuthority('ADMIN')" th:href="@{'/deleteChef' + '/' + ${chef.id}}">Elimina</a>
   					</div>
+  					
   				</div>
 			</div>
 		</div>
+		
+		<div class="row d-flex justify-content-center align-items-center my-5">
+			<a class="btn my-2 my-sm-0 btn-primary" sec:authorize="hasAuthority('ADMIN')" th:href="@{'/aggiungiChef'}">Aggiungi Chef</a>
+		</div>
+		
 	</div>
 
 	<section th:replace="fragments/base.html :: contatti"></section>

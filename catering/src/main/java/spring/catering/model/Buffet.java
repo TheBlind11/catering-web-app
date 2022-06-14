@@ -6,8 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Buffet {
@@ -18,8 +19,11 @@ public class Buffet {
 
 	@ManyToOne
 	private Chef chef;
-
-	@ManyToMany(mappedBy = "buffet")
+	
+	/* Concettualmente dovrebbe essere ManyToMany ma non ho modellato il progetto in modo tale da mantenere le stesse entità di piatto per buffet diversi,
+	   creo sempre un piatto diverso nonostante sia lo stesso */
+	@OneToMany
+	@JoinColumn(name = "buffet_id")
 	private List<Piatto> piatti;
 
 	private String nome;

@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -22,14 +22,15 @@ public class Piatto {
 
 	private String descrizione;
 	
-	@ManyToMany
-	private List<Buffet> buffet;
+	/* Concettualmente è giusto ma difficile da modellare */
+	/* @ManyToMany 
+	private List<Buffet> buffet; */  
 
 	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "piatto_id")
 	private List<Ingrediente> ingredienti;
 	
 	public Piatto() {
-		this.buffet = new ArrayList<Buffet>();
 		this.ingredienti = new ArrayList<Ingrediente>();
 	}
 
@@ -55,14 +56,6 @@ public class Piatto {
 
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
-	}
-	
-	public List<Buffet> getBuffet() {
-		return buffet;
-	}
-
-	public void setBuffet(List<Buffet> buffet) {
-		this.buffet = buffet;
 	}
 
 	public List<Ingrediente> getIngredienti() {

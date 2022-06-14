@@ -75,7 +75,7 @@ public class BuffetController {
 			model.addAttribute("chef", chef);
 			model.addAttribute("buffetList", chef.getBuffet());
 			
-			return "buffet/allBuffet.html";
+			return "chef/chef.html";
 		}
 		return "buffet/newBuffet.html";
 	}
@@ -88,9 +88,10 @@ public class BuffetController {
 		
 		this.bs.delete(buffet);
 		
+		model.addAttribute("chef", buffet.getChef());
 		model.addAttribute("buffetList", buffet.getChef().getBuffet());
 		
-		return "buffet/allBuffet.html";
+		return "chef/chef.html";
 	}
 	
 	//vai alla pagina di modifica di un buffet di uno chef
@@ -113,8 +114,10 @@ public class BuffetController {
 		if(!buffetBindingResult.hasErrors()) {
 			this.bs.update(buffet, newBuffet);
 			List<Buffet> buffetList = this.bs.findAll();
+			model.addAttribute("chef", buffet.getChef());
 			model.addAttribute("buffetList", buffetList);
-			return "buffet/allBuffet.html";
+			
+			return "chef/chef.html";
 		}
 		return "buffet/modificaBuffet.html";
 	}
