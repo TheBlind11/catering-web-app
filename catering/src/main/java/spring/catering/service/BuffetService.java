@@ -15,6 +15,11 @@ public class BuffetService {
 
 	@Autowired
 	private BuffetRepository br;
+	
+	@Transactional
+	public void save(Buffet b) {
+		this.br.save(b);
+	}
 
 	public boolean alreadyExists(Buffet target) {
 		return this.br.existsByNomeAndDescrizione(target.getNome(), target.getDescrizione());

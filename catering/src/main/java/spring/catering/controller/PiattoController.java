@@ -1,6 +1,5 @@
 package spring.catering.controller;
 
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -33,11 +32,9 @@ public class PiattoController {
 	
 	
 	//visualizza un piatto di uno specifico buffet
-	@GetMapping("/buffet/{idBuffet}/piatto/{idPiatto}")
-	public String getPiatto(@PathVariable("idBuffet") Long idBuffet, @PathVariable("idPiatto") Long idPiatto, Model model) {
-		Buffet buffet = this.bs.findById(idBuffet).get();
+	@GetMapping("/piatto/{idPiatto}")
+	public String getPiatto(@PathVariable("idPiatto") Long idPiatto, Model model) {
 		Piatto piatto = this.ps.findById(idPiatto).get();
-		model.addAttribute("buffet", buffet);
 		model.addAttribute("piatto", piatto);
 		
 		return "piatto/piatto.html";
@@ -70,12 +67,10 @@ public class PiattoController {
 		this.pv.validate(piatto, bindingResult);
 		
 		if(!bindingResult.hasErrors()) {
-			List<Piatto> piatti = buffet.getPiatti();
-			piatti.add(piatto);
+			buffet.getPiatti().add(piatto);
 			
-			this.ps.save(piatto);
+			this.bs.save(buffet);
 			model.addAttribute("buffet", buffet);
-			model.addAttribute("piatti", piatti);
 			
 			return "buffet/buffet.html";
 		}
@@ -91,7 +86,6 @@ public class PiattoController {
 		
 		this.ps.delete(piatto);
 		model.addAttribute("buffet", buffet);
-		model.addAttribute("piatti", buffet.getPiatti());
 		
 		return "buffet/buffet.html";
 	}
@@ -120,7 +114,6 @@ public class PiattoController {
 		if(!bindingResult.hasErrors()) {
 			this.ps.update(piatto, newPiatto);
 			model.addAttribute("buffet", buffet);
-			model.addAttribute("piatti", buffet.getPiatti());
 			return "buffet/buffet.html";
 		}
 		

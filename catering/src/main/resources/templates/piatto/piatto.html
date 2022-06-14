@@ -3,18 +3,54 @@
 <head th:replace="fragments/base.html :: headerfiles(title='Piatto')"></head>
 <body>
 	<header th:replace="fragments/base.html :: navbar"></header>
-	<div>
-		<h4>Dettagli Piatto</h4>
-		<div>
-			<span th:text="${piatto.nome}">Carbonara</span> 
-			<span th:text="${piatto.descrizione}">Piatto a base di...</span> 
-			<a th:href="@{/piatto} + '/' + ${piatto.id} + @{/elencoIngredienti}">ELENCO INGREDIENTI</a>
-			<a sec:authorize="hasAuthority('ADMIN')" th:href="@{/piatto} + '/' + ${piatto.id} + @{/aggiungiIngrediente}">AGGIUNGI INGREDIENTE</a>
+	
+	<div id="carouselExampleSlidesOnly" class="carousel slide back" data-ride="carousel">
+  		<div class="carousel-inner">
+    		<div class="carousel-item active">
+      			<img class="d-block w-100" src="/images/piattoBanner.png" alt="First slide">
+    		</div>
+    	</div>
+    </div>
+	
+	<div class="container pt-5">
+		<div class="row">
+			<div class="col col-lg-4" th:each="ingrediente : ${piatto.ingredienti}">
+				<div class="card">
+					<div class="card-header border-0 rounded-0 bg-white">
+  						<img src="/images/ingrediente.png" class="card-img-top" alt="...">
+  					</div>
+  					
+  					<div class="card-body">
+    					<h5 class="card-title" th:text="${ingrediente.nome}"></h5>
+    					<p class="card-text" th:text="${ingrediente.descrizione}"></p>
+    					<p class="card-text" th:text="${ingrediente.origine}"></p>
+    				</div>
+    					
+    				<div sec:authorize="hasAuthority('ADMIN')" class="card-footer bg-dark rounded">
+    					<div class="container p-0 d-flex justify-content-center align-items-center" >
+    						<div class="row m-0 d-flex justify-content-center align-items-center">
+    							<div class="col my-1 d-flex justify-content-center align-items-center">
+    								<a class="btn my-2 my-sm-0 cardButtonTeal" th:href="@{'/piatto' + '/' + ${piatto.id} + '/modificaIngrediente' + '/' + ${ingrediente.id}}">Modifica</a>
+    							</div>
+    							
+    							<div class="col my-1 d-flex justify-content-center align-items-center">
+    								<a class="btn my-2 my-sm-0 cardButtonRed" th:href="@{'/piatto' + '/' + ${piatto.id} + '/eliminaIngrediente' + '/' + ${ingrediente.id}}">Elimina</a>
+    							</div>
+    						</div>
+    					</div>
+    				</div>
+    				
+    			</div>
+    		</div>
+    	</div>
+    	
+    	<div sec:authorize="hasAuthority('ADMIN')" class="row d-flex justify-content-center align-items-center my-5">
+			<a class="btn my-2 my-sm-0 btn-primary" th:href="@{/piatto} + '/' + ${piatto.id} + @{/aggiungiIngrediente}">Aggiungi Ingrediente</a>
 		</div>
-	</div>
-	<footer>
-		<a th:href="@{/}">Home</a>
-	</footer>
+    	
+    </div>
+    
+    <section th:replace="fragments/base.html :: contatti"></section>
 	
 	<div th:replace="fragments/base.html :: script"></div>
 	

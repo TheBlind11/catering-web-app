@@ -3,6 +3,7 @@
 <head th:fragment="headerfiles(title)">
 	<meta charset="UTF-8" />
 	<title th:text="${title}"></title>
+	<link rel="shortcut icon" href="images/favicon.png" type="">
 	<!-- bootstrap core css -->
   	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
 	<link href="/css/style.css" rel="stylesheet">
@@ -53,13 +54,13 @@
 	</div>
 	
 	<section id="foot" class="container-fluid" th:fragment="contatti">
-		<div class="container">
+		<div class="containerGeneric">
 	
 			<div class="title"><h1>Contattaci</h1></div>
 	
-			<div class="row">
+			<div class="row footerResize">
 				<div class="col col-md-5">
-					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2975.393314766916!2d12.369286717443847!3d41.77673650000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1325f3b8e61e19f1%3A0x50470e27b5d04ca2!2sVia%20Leonardo%20Mellano%2C%2040%2C%2000125%20Roma%20RM!5e0!3m2!1sit!2sit!4v1654351695347!5m2!1sit!2sit" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+					<iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2975.393314766916!2d12.369286717443847!3d41.77673650000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1325f3b8e61e19f1%3A0x50470e27b5d04ca2!2sVia%20Leonardo%20Mellano%2C%2040%2C%2000125%20Roma%20RM!5e0!3m2!1sit!2sit!4v1654351695347!5m2!1sit!2sit" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 				</div>
 			
 				<div class="col col-sm-2">

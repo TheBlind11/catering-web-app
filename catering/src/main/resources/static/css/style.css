@@ -37,9 +37,19 @@
 	background-color: red;
 }
 
+/* CONFIGURAZIONE SCHERMO PICCOLO */
 @media screen and (max-width: 992px){
 	.navButton3 {
 		margin-left: 0px;
+	}
+	
+	.dividerContatti {
+		display: none;
+	}
+	
+	.footerResize .col-md-5 {
+		max-width: 100%;
+		flex: 100%;
 	}
 }
 
@@ -60,30 +70,8 @@
 }
 
 /* BANNER */
-.back {
+.banner {
 	margin-top: 63px;
-}
-
-/* BANNER CATERING*/
-.backgroundCatering {
-	background-image: url("/images/cateringBanner.png");
-	background-size: cover;
-    background-repeat: no-repeat;
-    
-}
-
-/* BANNER CHEF*/
-.backgroundChef {
-	background-image: url("/images/bannerChef.png");
-	background-size: cover;
-    background-repeat: no-repeat;
-}
-
-/* BANNER BUFFET*/
-.backgroundBuffet {
-	background-image: url("/images/buffetBanner.png");
-	background-size: cover;
-    background-repeat: no-repeat;
 }
 
 /* GENERIC CARD */
@@ -149,7 +137,7 @@
 	font-size: 20px;
 }
 
-.container {
+.containerGeneric {
 	padding: 30px 50px 50px 50px;
 }
 
@@ -187,6 +175,21 @@ input {
 }
 
 .buttonForm:hover {
+	background-color: #403866;
+}
+
+.button {
+    border-radius: 5px;
+    background-color: #827ffe;
+    width: 100%;
+    height: 30px;
+    border: none;
+    transition-duration: 0.4s;
+    color: white;
+    justify-content: right;
+}
+
+.button:hover {
 	background-color: #403866;
 }
 
@@ -239,7 +242,7 @@ input:focus-visible {
 }
 
 .dividerContatti {
-	margin: 50px 0px 50px 100px;
+	margin: 50px 0px 50px 120px;
 }
 
 a {
@@ -279,30 +282,7 @@ a:hover {
     display: flexbox;
 }
 
-.button {
-    border-radius: 5px;
-    background-color: #827ffe;
-    width: 100%;
-    height: 30px;
-    border: none;
-    transition-duration: 0.4s;
-    color: white;
-    justify-content: right;
-}
-
-.button:hover {
-	background-color: #403866;
-}
-
 .right {
     width: 5%;
-}
-
-.map {
-	margin-top: 20px;
-	margin-bottom: 30px;
-	border-style: outset;
-	border-width: 5px;
-	margin-right: 20px;
 }
 

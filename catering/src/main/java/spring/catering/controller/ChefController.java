@@ -58,7 +58,8 @@ public class ChefController {
 		
 		if(!bindingResult.hasErrors()) {
 			cs.save(chef);
-			return "chef/chef.html";
+			model.addAttribute("chefs", this.cs.findAllChef());
+			return "chef/elencoChef.html";
 		}
 			
 		return "chef/newChef.html";

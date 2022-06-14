@@ -1,7 +1,9 @@
 package spring.catering.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,7 +24,7 @@ public class Buffet {
 	
 	/* Concettualmente dovrebbe essere ManyToMany ma non ho modellato il progetto in modo tale da mantenere le stesse entità di piatto per buffet diversi,
 	   creo sempre un piatto diverso nonostante sia lo stesso */
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "buffet_id")
 	private List<Piatto> piatti;
 
@@ -30,6 +32,10 @@ public class Buffet {
 
 	private String descrizione;
 
+	public Buffet() {
+		this.piatti = new ArrayList<Piatto>();
+	}
+	
 	public Long getId() {
 		return id;
 	}
