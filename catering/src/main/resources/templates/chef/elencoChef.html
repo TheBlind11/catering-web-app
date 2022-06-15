@@ -7,12 +7,15 @@
 	<div id="carouselExampleSlidesOnly" class="carousel slide back" data-ride="carousel">
   		<div class="carousel-inner">
     		<div class="carousel-item active">
-      			<img class="d-block w-100" src="/images/bannerChef.png" alt="First slide">
+      			<img class="d-block w-100" src="/images/bannerChef.webp" alt="First slide">
+      			<div class="carousel-caption d-md-block" align=center>
+      				<h1 class="bannerTitle" style="text-align: center; background: rgba(85,65,54,0.8);">I nostri Chef</h1>
+      			</div>
     		</div>
     	</div>
     </div>
 	
-	<div class="container pt-5">
+	<div class="container py-5">
 		<div class="row">
 			<div class="col col-lg-4" th:each="chef : ${chefs}">
 				<div class="card">
@@ -22,19 +25,19 @@
   					
   					<div class="card-body">
     					<h5 class="card-title" th:text="${chef.nome} + ' ' + ${chef.cognome}"></h5>
-    					<p class="card-text" th:text="${chef.nazionalita}"></p>
-    					<a class="btn my-2 my-sm-0 cardButton" th:href="@{'/chef' + '/' + ${chef.id}}">Visualizza Chef</a>
+    					Nazionalità: <p class="card-text" th:text="${chef.nazionalita}"></p>
+    					<a sec:authorize="isAuthenticated()" class="btn my-2 my-sm-0 cardButton" th:href="@{'/chef' + '/' + ${chef.id}}">Visualizza Chef</a>
     				</div>
     				
     				<div sec:authorize="hasAuthority('ADMIN')" class="card-footer bg-dark rounded">
     					<div class="container p-0 d-flex justify-content-center align-items-center" >
     						<div class="row m-0 d-flex justify-content-center align-items-center">
     							<div class="col my-1 d-flex justify-content-center align-items-center">
-    								<a class="btn my-2 my-sm-0 cardButtonTeal" th:href="@{'/modificaChef' + '/' + ${chef.id}}">Modifica</a>
+    								<a class="btn my-2 my-sm-0 cardButtonTeal" th:href="@{'/admin' + '/modificaChef' + '/' + ${chef.id}}">Modifica</a>
     							</div>
     							
     							<div class="col my-1 d-flex justify-content-center align-items-center">
-    								<a class="btn my-2 my-sm-0 cardButtonRed" th:href="@{'/deleteChef' + '/' + ${chef.id}}">Elimina</a>
+    								<a class="btn my-2 my-sm-0 cardButtonRed" th:href="@{'admin' + '/deleteChef' + '/' + ${chef.id}}">Elimina</a>
     							</div>
     						</div>
     					</div>
@@ -44,8 +47,8 @@
 			</div>
 		</div>
 		
-		<div sec:authorize="hasAuthority('ADMIN')" class="row d-flex justify-content-center align-items-center my-5">
-			<a class="btn my-2 my-sm-0 btn-primary" th:href="@{'/aggiungiChef'}">Aggiungi Chef</a>
+		<div sec:authorize="hasAuthority('ADMIN')" class="row d-flex justify-content-center align-items-center mt-5">
+			<a class="btn my-2 my-sm-0 btn-primary" th:href="@{'/admin' + '/aggiungiChef'}">Aggiungi Chef</a>
 		</div>
 		
 	</div>

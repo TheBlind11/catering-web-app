@@ -24,8 +24,8 @@ public class PiattoController {
 	@Autowired
 	private PiattoService ps;
 	
-	@Autowired
-	private PiattoValidator pv;
+	/* @Autowired
+	private PiattoValidator pv; */
 	
 	@Autowired
 	private BuffetService bs;
@@ -51,20 +51,20 @@ public class PiattoController {
 	}
 	
 	//vai alla pagina newPiatto per aggiungere un nuovo piatto ad uno specifico buffet
-	@GetMapping("/buffet/{id}/aggiungiPiatto")
+	@GetMapping("/admin/buffet/{id}/aggiungiPiatto")
 	public String addPiatto(@PathVariable("id") Long id, Model model) {
 		Buffet buffet = this.bs.findById(id).get();
 		model.addAttribute("buffet", buffet);
 		model.addAttribute("piatto", new Piatto());
 		
-		return "piatto/newPiatto.html";
+		return "admin/newPiatto.html";
 	}
 	
 	//configurazione form di pagina newPiatto per aggiungere un nuovo piatto ad un buffet
-	@PostMapping("/buffet/{id}/aggiungiPiatto")
-	public String addPiattoForm(@PathVariable("id") Long id, @Valid @ModelAttribute Piatto piatto, BindingResult bindingResult, Model model) {
+	@PostMapping("/admin/buffet/{id}/aggiungiPiatto")
+	public String addPiattoForm(@PathVariable("id") Long id, @Valid @ModelAttribute("piatto") Piatto piatto, BindingResult bindingResult, Model model) {
 		Buffet buffet = this.bs.findById(id).get();
-		this.pv.validate(piatto, bindingResult);
+		//this.pv.validate(piatto, bindingResult);
 		
 		if(!bindingResult.hasErrors()) {
 			buffet.getPiatti().add(piatto);
@@ -75,11 +75,11 @@ public class PiattoController {
 			return "buffet/buffet.html";
 		}
 		
-		return "piatto/newPiatto.html";
+		return "admin/newPiatto.html";
 	}
 	
 	//elimina il piatto di un buffet
-	@GetMapping("/buffet/{idBuffet}/eliminaPiatto/{idPiatto}")
+	@GetMapping("/admin/buffet/{idBuffet}/eliminaPiatto/{idPiatto}")
 	public String deletePiatto(@PathVariable("idBuffet") Long idBuffet, @PathVariable("idPiatto") Long idPiatto, Model model) {
 		Buffet buffet = this.bs.findById(idBuffet).get();
 		Piatto piatto = this.ps.findById(idPiatto).get();
@@ -91,7 +91,7 @@ public class PiattoController {
 	}
 	
 	//vai alla pagina di modifica di un piatto di un buffet
-	@GetMapping("/buffet/{idBuffet}/modificaPiatto/{idPiatto}")
+	@GetMapping("/admin/buffet/{idBuffet}/modificaPiatto/{idPiatto}")
 	public String modificaPiatto(@PathVariable("idBuffet") Long idBuffet, @PathVariable("idPiatto") Long idPiatto, Model model) {
 		Buffet buffet = this.bs.findById(idBuffet).get();
 		Piatto piatto = this.ps.findById(idPiatto).get();
@@ -99,25 +99,26 @@ public class PiattoController {
 		model.addAttribute("buffet", buffet);
 		model.addAttribute("piatto", piatto);
 		
-		return "piatto/modificaPiatto.html";
+		return "admin/modificaPiatto.html";
 	}
 	
 	//configurazione form della pagina di modifica di un piatto di un buffet
-	@PostMapping("/buffet/{idBuffet}/modificaPiatto/{idPiatto}")
+	@PostMapping("/admin/buffet/{idBuffet}/modificaPiatto/{idPiatto}")
 	public String modificaPiattoForm(@PathVariable("idBuffet") Long idBuffet, @PathVariable("idPiatto") Long idPiatto, 
-									@Valid @ModelAttribute Piatto newPiatto, BindingResult bindingResult, Model model) {
+									@Valid @ModelAttribute("newPiatto") Piatto newPiatto, BindingResult bindingResult, Model model) {
 		Buffet buffet = this.bs.findById(idBuffet).get();
 		Piatto piatto = this.ps.findById(idPiatto).get();
 		
-		this.pv.validate(newPiatto, bindingResult);
+		//this.pv.validate(newPiatto, bindingResult);
 		
 		if(!bindingResult.hasErrors()) {
 			this.ps.update(piatto, newPiatto);
+			this.bs.save(buffet);
 			model.addAttribute("buffet", buffet);
 			return "buffet/buffet.html";
 		}
 		
-		return "piatto/modificaPiatto.html";
+		return "admin/modificaPiatto.html";
 	}
 	
 }

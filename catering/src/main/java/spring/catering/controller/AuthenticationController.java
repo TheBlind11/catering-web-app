@@ -17,8 +17,6 @@ import spring.catering.controller.validator.CredentialsValidator;
 import spring.catering.controller.validator.UtenteValidator;
 import spring.catering.model.Credentials;
 import spring.catering.model.Utente;
-import spring.catering.service.BuffetService;
-import spring.catering.service.ChefService;
 import spring.catering.service.CredentialsService;
 
 @Controller
@@ -92,6 +90,6 @@ public class AuthenticationController {
 			return "index.html";
 		}
 		
-		return "register.html";
+		return "authentication/register.html";
 	}
 }

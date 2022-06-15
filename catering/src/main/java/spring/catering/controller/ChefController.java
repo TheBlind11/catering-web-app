@@ -45,15 +45,15 @@ public class ChefController {
 	}
 	
 	//vai a pagina newChef.html
-	@GetMapping("/aggiungiChef") 
+	@GetMapping("/admin/aggiungiChef") 
 	public String newChef(Model model) {
 		model.addAttribute("chef", new Chef());
-		return "chef/newChef.html";
+		return "admin/newChef.html";
 	}
 	
 	//configurazione form per addChef in pagina newChef.html
-	@PostMapping("/aggiungiChef")
-	public String newChef(@Valid @ModelAttribute Chef chef, BindingResult bindingResult, Model model) {
+	@PostMapping("/admin/aggiungiChef")
+	public String newChef(@Valid @ModelAttribute("chef") Chef chef, BindingResult bindingResult, Model model) {
 		cv.validate(chef, bindingResult);
 		
 		if(!bindingResult.hasErrors()) {
@@ -62,11 +62,11 @@ public class ChefController {
 			return "chef/elencoChef.html";
 		}
 			
-		return "chef/newChef.html";
+		return "admin/newChef.html";
 	}
 	
 	//elimina uno chef
-	@GetMapping("/deleteChef/{id}")
+	@GetMapping("/admin/deleteChef/{id}")
 	public String deleteChef(@PathVariable("id") Long id, Model model) {
 		this.cs.delete(id);
 		model.addAttribute("chefs", this.cs.findAllChef());
@@ -74,16 +74,17 @@ public class ChefController {
 	}
 	
 	//vai alla pagina di mofifica di uno chef
-	@GetMapping("/modificaChef/{id}")
+	@GetMapping("/admin/modificaChef/{id}")
 	public String modificaChef(@PathVariable("id") Long id, Model model) {
 		Chef chef = cs.findById(id).get();
 		model.addAttribute("chef", chef);
-		return "chef/modificaChef.html";
+		return "admin/modificaChef.html";
 	}
 	
 	//configurazione form di modifica alla pagina di modificaChef
-	@PostMapping("/modificaChef/{id}")
-	public String modificaChefForm(@PathVariable("id") Long id, @Valid @ModelAttribute Chef newChef, BindingResult chefBindingResult, Model model) {
+	@PostMapping("/admin/modificaChef/{id}")
+	public String modificaChefForm(@PathVariable("id") Long id, @Valid @ModelAttribute("newChef") Chef newChef, BindingResult chefBindingResult, Model model) {
+		Chef chef = this.cs.findById(id).get();
 		this.cv.validate(newChef, chefBindingResult);
 		
 		if(!chefBindingResult.hasErrors()) {
@@ -92,7 +93,9 @@ public class ChefController {
 			model.addAttribute("chefs", chefs);
 			return "chef/elencoChef.html";
 		}
-		return "chef/modificaChef.html";
+		
+		model.addAttribute("chef", chef);
+		return "admin/modificaChef.html";
 	}
 	
 }

@@ -38,7 +38,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter{
             //solo gli utenti autenticati con ruolo admin possono accedere a risorse con path /admin/
             .antMatchers(HttpMethod.GET, "/admin/**").hasAnyAuthority(Credentials.ADMIN_ROLE)
             .antMatchers(HttpMethod.POST, "/admin/**").hasAnyAuthority(Credentials.ADMIN_ROLE)
-            .anyRequest().authenticated()
+            //.anyRequest().authenticated()  //togliendo questo non serve autenticazione per andare sulle altre pagine
 
             //login paragraph: qui definiamo come è gestita l'autenticazione
             //usiamo il protocollo formlogin

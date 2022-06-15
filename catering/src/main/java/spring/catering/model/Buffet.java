@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Buffet {
@@ -28,8 +29,10 @@ public class Buffet {
 	@JoinColumn(name = "buffet_id")
 	private List<Piatto> piatti;
 
+	@NotBlank
 	private String nome;
 
+	@NotBlank
 	private String descrizione;
 
 	public Buffet() {

@@ -7,15 +7,18 @@
 	<div id="carouselExampleSlidesOnly" class="carousel slide back" data-ride="carousel">
   		<div class="carousel-inner">
     		<div class="carousel-item active">
-      			<img class="d-block w-100" src="/images/bannerChef.png" alt="First slide">
+      			<img class="d-block w-100" src="/images/bannerChef.webp" alt="First slide">
+      			<div class="carousel-caption d-md-block">
+      				<h1 class="bannerTitle" style="padding: 20px; background: rgba(85,65,54,0.8);">Chef</h1>
+      			</div>
     		</div>
     	</div>
     </div>
 
-	<div class="container pt-5">
+	<div class="container py-5">
 		<div class="row">
 			<div class="col col-lg-4" th:each="buffet : ${chef.buffet}">
-				<div class="card p-3">
+				<div class="card">
 					<div class="card-header border-0 rounded-0 bg-white">
   						<img src="/images/buffetIcon.png" class="card-img-top" alt="...">
   					</div>
@@ -31,11 +34,11 @@
     					<div class="container p-0 d-flex justify-content-center align-items-center" >
     						<div class="row m-0 d-flex justify-content-center align-items-center">
     							<div class="col my-1 d-flex justify-content-center align-items-center">
-    								<a class="btn my-2 my-sm-0 cardButtonTeal" th:href="@{'/modificaBuffet' + '/' + ${buffet.id}}">Modifica</a>
+    								<a class="btn my-2 my-sm-0 cardButtonTeal" th:href="@{'/admin' + '/modificaBuffet' + '/' + ${buffet.id}}">Modifica</a>
     							</div>
     							
     							<div class="col my-1 d-flex justify-content-center align-items-center">
-    								<a class="btn my-2 my-sm-0 cardButtonRed" th:href="@{'/eliminaBuffet' + '/' + ${buffet.id}}">Elimina</a>
+    								<a class="btn my-2 my-sm-0 cardButtonRed" th:href="@{'/admin' + '/eliminaBuffet' + '/' + ${buffet.id}}">Elimina</a>
   								</div>
   							</div>
   						</div>
@@ -45,8 +48,8 @@
 			</div>
 		</div>
 		
-		<div sec:authorize="hasAuthority('ADMIN')" class="row d-flex justify-content-center align-items-center my-5">
-			<a class="btn my-2 my-sm-0 btn-primary" th:href="@{'/chef' + '/' + ${chef.id} + '/aggiungiBuffet'}">Aggiungi Buffet</a>
+		<div sec:authorize="hasAuthority('ADMIN')" class="row d-flex justify-content-center align-items-center mt-5">
+			<a class="btn my-2 my-sm-0 btn-primary" th:href="@{'/admin' + '/chef' + '/' + ${chef.id} + '/aggiungiBuffet'}">Aggiungi Buffet</a>
 		</div>
 	</div>
 	

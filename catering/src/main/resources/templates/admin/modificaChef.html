@@ -7,26 +7,32 @@
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 </head>
 <body>
-	<div align="center" class="title">
+	<div align="center" class="formtitle">
 		<h1>Modifica uno Chef</h1>
 	</div>
 
-	<div class="logincontainer">
+	<div class="formcontainer">
 		<div class="itemLogin">
-			<form th:action="@{/modificaChef} + '/' + ${chef.id}" method="post">
-				<div>
-					<input type="text" placeholder="Nome" required th:field="${chef.nome}" />
-					<!-- <span th:if="${#fields.hasErrors('chef.nome')}" th:errors="${chef.nome}"></span> -->
-				</div>
+			<form th:action="@{/admin} + @{/modificaChef} + '/' + ${chef.id}" method="post">
+				<div th:object="${chef}">
+					<div class="alert alert-danger" role="alert" th:if="${#fields.hasGlobalErrors()}">
+                		<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
+					</div>
+					
+					<div>
+						<input type="text" placeholder="Nome" th:field="*{nome}" />
+						<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+					</div>
 
-				<div>
-					<input type="text" placeholder="Cognome" required th:field="${chef.cognome}" />
-					<!-- <span th:if="${#fields.hasErrors('chef.cognome')}" th:errors="${chef.cognome}"></span> -->
-				</div>
+					<div>
+						<input type="text" placeholder="Cognome" th:field="*{cognome}" />
+						<span th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></span>
+					</div>
 
-				<div>
-					<input type="text" placeholder="Nazionalità" required th:field="${chef.nazionalita}" />
-					<!-- <span th:if="${#fields.hasErrors('chef.nazionalita')}" th:errors="${chef.nazionalita}"></span> -->
+					<div>
+						<input type="text" placeholder="Nazionalità" th:field="*{nazionalita}" />
+						<span th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazionalita}"></span>
+					</div>
 				</div>
 
 				<div>
@@ -35,9 +41,6 @@
 			</form>
 		</div>
 	</div>
-	<footer>
-		<a th:href="@{/}">Home</a>
-	</footer>
 	
 	<div th:replace="fragments/base.html :: script"></div>
 	

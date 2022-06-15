@@ -8,11 +8,14 @@
   		<div class="carousel-inner">
     		<div class="carousel-item active">
       			<img class="d-block w-100" src="/images/piattoBanner.png" alt="First slide">
+      			<div class="carousel-caption d-md-block">
+      				<h1 class="bannerTitle" style="padding: 20px; background: rgba(85,65,54,0.6);">Piatto</h1>
+      			</div>
     		</div>
     	</div>
     </div>
 	
-	<div class="container pt-5">
+	<div class="container py-5">
 		<div class="row">
 			<div class="col col-lg-4" th:each="ingrediente : ${piatto.ingredienti}">
 				<div class="card">
@@ -30,11 +33,11 @@
     					<div class="container p-0 d-flex justify-content-center align-items-center" >
     						<div class="row m-0 d-flex justify-content-center align-items-center">
     							<div class="col my-1 d-flex justify-content-center align-items-center">
-    								<a class="btn my-2 my-sm-0 cardButtonTeal" th:href="@{'/piatto' + '/' + ${piatto.id} + '/modificaIngrediente' + '/' + ${ingrediente.id}}">Modifica</a>
+    								<a class="btn my-2 my-sm-0 cardButtonTeal" th:href="@{'/admin' + '/piatto' + '/' + ${piatto.id} + '/modificaIngrediente' + '/' + ${ingrediente.id}}">Modifica</a>
     							</div>
     							
     							<div class="col my-1 d-flex justify-content-center align-items-center">
-    								<a class="btn my-2 my-sm-0 cardButtonRed" th:href="@{'/piatto' + '/' + ${piatto.id} + '/eliminaIngrediente' + '/' + ${ingrediente.id}}">Elimina</a>
+    								<a class="btn my-2 my-sm-0 cardButtonRed" th:href="@{'/admin' + '/piatto' + '/' + ${piatto.id} + '/eliminaIngrediente' + '/' + ${ingrediente.id}}">Elimina</a>
     							</div>
     						</div>
     					</div>
@@ -44,8 +47,8 @@
     		</div>
     	</div>
     	
-    	<div sec:authorize="hasAuthority('ADMIN')" class="row d-flex justify-content-center align-items-center my-5">
-			<a class="btn my-2 my-sm-0 btn-primary" th:href="@{/piatto} + '/' + ${piatto.id} + @{/aggiungiIngrediente}">Aggiungi Ingrediente</a>
+    	<div sec:authorize="hasAuthority('ADMIN')" class="row d-flex justify-content-center align-items-center mt-5">
+			<a class="btn my-2 my-sm-0 btn-primary" th:href="@{/admin} + @{/piatto} + '/' + ${piatto.id} + @{/aggiungiIngrediente}">Aggiungi Ingrediente</a>
 		</div>
     	
     </div>

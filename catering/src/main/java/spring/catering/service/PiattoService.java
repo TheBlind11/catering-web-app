@@ -39,7 +39,6 @@ public class PiattoService {
 	public void update(Piatto piatto, Piatto newPiatto) {
 		piatto.setNome(newPiatto.getNome());
 		piatto.setDescrizione(newPiatto.getDescrizione());
-		this.pr.save(piatto);
 	}
 
 }

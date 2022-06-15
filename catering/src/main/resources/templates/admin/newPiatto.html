@@ -8,31 +8,28 @@
 <title>Catering Web App</title>
 </head>
 <body>
-	<div align="center" class="title">
+	<div align="center" class="formtitle">
 		<h1>Aggiungi un Piatto al Buffet</h1>
 	</div>
 
-	<div class="logincontainer">
-		<div class="itemLogin">
-			<form th:action="@{/buffet} + '/' + ${buffet.id} + @{/aggiungiPiatto}" method="post">
-				<div>
-					<input type="text" placeholder="Nome" required th:field="${piatto.nome}" />
-					<!-- <span th:if="${#fields.hasErrors('piatto.nome')}" th:errors="${piatto.nome}"></span> -->
-				</div>
+	<div class="formcontainer">
+		<div class="itemform">
+			<form th:action="@{/admin} + @{/buffet} + '/' + ${buffet.id} + @{/aggiungiPiatto}" method="post">
+				<div th:object="${piatto}">
+					<div>
+						<input type="text" placeholder="Nome" th:field="*{nome}" />
+						<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+					</div>
 
-				<div>
-					<input type="text" placeholder="Descrizione" required th:field="${piatto.descrizione}" />
-					<!-- <span th:if="${#fields.hasErrors('piatto.descrizione')}" th:errors="${piatto.descrizione}"></span> -->
+					<div>
+						<input type="text" placeholder="Descrizione" th:field="*{descrizione}" />
+					</div>
 				</div>
 
 				<div>
 					<button class="buttonForm" type="submit">Conferma</button>
 				</div>
 			</form>
-
-			<footer>
-				<a th:href="@{/}">Home</a>
-			</footer>
 		</div>
 	</div>
 	
