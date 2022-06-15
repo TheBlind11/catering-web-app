@@ -61,7 +61,7 @@ public class ChefController {
 			model.addAttribute("chefs", this.cs.findAllChef());
 			return "chef/elencoChef.html";
 		}
-			
+		
 		return "admin/newChef.html";
 	}
 	
@@ -83,18 +83,19 @@ public class ChefController {
 	
 	//configurazione form di modifica alla pagina di modificaChef
 	@PostMapping("/admin/modificaChef/{id}")
-	public String modificaChefForm(@PathVariable("id") Long id, @Valid @ModelAttribute("newChef") Chef newChef, BindingResult chefBindingResult, Model model) {
+	public String modificaChefForm(@Valid @ModelAttribute("chef") Chef newChef, BindingResult chefBindingResult, @PathVariable("id") Long id, Model model) {
 		Chef chef = this.cs.findById(id).get();
 		this.cv.validate(newChef, chefBindingResult);
 		
 		if(!chefBindingResult.hasErrors()) {
-			this.cs.update(this.cs.findById(id).get(), newChef);
+			this.cs.update(chef, newChef);
 			List<Chef> chefs = this.cs.findAllChef();
 			model.addAttribute("chefs", chefs);
 			return "chef/elencoChef.html";
 		}
 		
-		model.addAttribute("chef", chef);
+		newChef.setId(id);
+		model.addAttribute("chef", newChef);
 		return "admin/modificaChef.html";
 	}
 	

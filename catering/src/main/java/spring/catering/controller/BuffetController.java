@@ -69,13 +69,14 @@ public class BuffetController {
 		if(!buffetBindingResult.hasErrors()) {
 			buffet.setChef(chef);
 			chef.getBuffet().add(buffet);
-			
 			cs.save(chef);
 			
 			model.addAttribute("chef", chef);
 			
 			return "chef/chef.html";
 		}
+		
+		model.addAttribute("chef", chef);
 		return "admin/newBuffet.html";
 	}
 	
@@ -103,8 +104,8 @@ public class BuffetController {
 	
 	//configurazione form della pagina di modifica di un buffet di uno chef
 	@PostMapping("/admin/modificaBuffet/{idBuffet}")
-	public String editBuffet(@PathVariable("idBuffet") Long idBuffet, 
-							@Valid @ModelAttribute("newBuffet") Buffet newBuffet, BindingResult buffetBindingResult, Model model) {
+	public String editBuffet(@Valid @ModelAttribute("buffet") Buffet newBuffet, BindingResult buffetBindingResult, 
+							 @PathVariable("idBuffet") Long idBuffet, Model model) {
 		Buffet buffet = this.bs.findById(idBuffet).get();
 		
 		this.bv.validate(newBuffet, buffetBindingResult);
@@ -115,7 +116,9 @@ public class BuffetController {
 			
 			return "chef/chef.html";
 		}
-		model.addAttribute("buffet", buffet);
+		
+		newBuffet.setId(idBuffet);
+		model.addAttribute("buffet", newBuffet);
 		return "admin/modificaBuffet.html";
 	}
 }

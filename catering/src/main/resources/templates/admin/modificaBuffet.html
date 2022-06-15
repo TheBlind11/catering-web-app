@@ -13,21 +13,19 @@
 
 	<div class="formcontainer">
 		<div class="itemform">
-			<form th:action="@{/admin} + @{/modificaBuffet} + '/' + ${buffet.id}" method="post">
-				<div th:object="${newBuffet}">
-					<div class="alert alert-danger" role="alert" th:if="${#fields.hasGlobalErrors()}">
-                		<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
-                	</div>
+			<form th:action="@{/admin} + @{/modificaBuffet} + '/' + ${buffet.id}" method="post" th:object="${buffet}">
+				<div class="alert alert-danger" role="alert" th:if="${#fields.hasGlobalErrors()}">
+                	<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
+                </div>
 				
-					<div>
-						<input type="text" placeholder="Nome" th:field="{buffet.nome}" />
-						<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
-					</div>
+				<div>
+					<input type="text" placeholder="Nome" th:field="*{nome}" />
+					<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+				</div>
 
-					<div>
-						<input type="text" placeholder="Descrizione" th:field="{buffet.descrizione}" />
-						<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></span>
-					</div>
+				<div>
+					<input type="text" placeholder="Descrizione" th:field="*{descrizione}" />
+					<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></span>
 				</div>
 
 				<div>

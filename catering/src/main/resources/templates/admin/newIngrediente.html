@@ -14,21 +14,19 @@
 
 	<div class="formcontainer">
 		<div class="itemform">
-			<form th:action="@{/admin} + @{/piatto} + '/' + ${piatto.id} + @{/aggiungiIngrediente}" method="post">
-				<div th:object="${ingrediente}">
-					<div>
-						<input type="text" placeholder="Nome" th:field="*{nome}" />
-						<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
-					</div>
+			<form th:action="@{/admin} + @{/piatto} + '/' + ${piatto.id} + @{/aggiungiIngrediente}" method="post" th:object="${ingrediente}">
+				<div>
+					<input type="text" placeholder="Nome" th:field="*{nome}" />
+					<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+				</div>
 
-					<div>
-						<input type="text" placeholder="Descrizione" th:field="*{descrizione}" />
-					</div>
+				<div>
+					<input type="text" placeholder="Descrizione" th:field="*{descrizione}" />
+				</div>
 				
-					<div>
-						<input type="text" placeholder="Origine" th:field="*{origine}" />
-						<span th:if="${#fields.hasErrors('origine')}" th:errors="*{origine}"></span>
-					</div>
+				<div>
+					<input type="text" placeholder="Origine" th:field="*{origine}" />
+					<span th:if="${#fields.hasErrors('origine')}" th:errors="*{origine}"></span>
 				</div>
 
 				<div>

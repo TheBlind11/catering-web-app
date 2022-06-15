@@ -6,4 +6,6 @@ import spring.catering.model.Ingrediente;
 
 public interface IngredienteRepository extends CrudRepository<Ingrediente, Long>{
 
+	public boolean findByNomeAndOrigine(String nome, String origine);
+
 }

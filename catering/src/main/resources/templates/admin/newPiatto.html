@@ -14,16 +14,14 @@
 
 	<div class="formcontainer">
 		<div class="itemform">
-			<form th:action="@{/admin} + @{/buffet} + '/' + ${buffet.id} + @{/aggiungiPiatto}" method="post">
-				<div th:object="${piatto}">
-					<div>
-						<input type="text" placeholder="Nome" th:field="*{nome}" />
-						<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
-					</div>
+			<form th:action="@{/admin} + @{/buffet} + '/' + ${buffet.id} + @{/aggiungiPiatto}" method="post" th:object="${piatto}">
+				<div>
+					<input type="text" placeholder="Nome" th:field="*{nome}" />
+					<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+				</div>
 
-					<div>
-						<input type="text" placeholder="Descrizione" th:field="*{descrizione}" />
-					</div>
+				<div>
+					<input type="text" placeholder="Descrizione" th:field="*{descrizione}" />
 				</div>
 
 				<div>

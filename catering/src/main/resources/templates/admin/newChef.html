@@ -13,26 +13,24 @@
 
 	<div class="formcontainer">
 		<div class="itemform">
-			<form th:action="@{/admin} + @{/aggiungiChef}" method="post">
-				<div th:object="${chef}">
-					<div class="alert alert-danger" role="alert" th:if="${#fields.hasGlobalErrors()}">
-                		<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
-					</div>
+			<form th:action="@{/admin} + @{/aggiungiChef}" method="post" th:object="${chef}">
+				<div class="alert alert-danger" role="alert" th:if="${#fields.hasGlobalErrors()}">
+                	<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
+				</div>
 					
-					<div>
-						<input type="text" placeholder="Nome" th:field="*{nome}" />
-						<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
-					</div>
+				<div>
+					<input type="text" placeholder="Nome" th:field="*{nome}" />
+					<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+				</div>
 
-					<div>
-						<input type="text" placeholder="Cognome" th:field="*{cognome}" />
-						<span th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></span>
-					</div>
+				<div>
+					<input type="text" placeholder="Cognome" th:field="*{cognome}" />
+					<span th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></span>
+				</div>
 
-					<div>
-						<input type="text" placeholder="Nazionalità" th:field="*{nazionalita}" />
-						<span th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazionalita}"></span>
-					</div>
+				<div>
+					<input type="text" placeholder="Nazionalità" th:field="*{nazionalita}" />
+					<span th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazionalita}"></span>
 				</div>
 
 				<div>

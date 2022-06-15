@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import spring.catering.controller.validator.PiattoValidator;
 import spring.catering.model.Buffet;
 import spring.catering.model.Piatto;
 import spring.catering.service.BuffetService;
@@ -62,7 +61,7 @@ public class PiattoController {
 	
 	//configurazione form di pagina newPiatto per aggiungere un nuovo piatto ad un buffet
 	@PostMapping("/admin/buffet/{id}/aggiungiPiatto")
-	public String addPiattoForm(@PathVariable("id") Long id, @Valid @ModelAttribute("piatto") Piatto piatto, BindingResult bindingResult, Model model) {
+	public String addPiattoForm(@Valid @ModelAttribute("piatto") Piatto piatto, BindingResult bindingResult, @PathVariable("id") Long id, Model model) {
 		Buffet buffet = this.bs.findById(id).get();
 		//this.pv.validate(piatto, bindingResult);
 		
@@ -75,6 +74,7 @@ public class PiattoController {
 			return "buffet/buffet.html";
 		}
 		
+		model.addAttribute("buffet", buffet);
 		return "admin/newPiatto.html";
 	}
 	
@@ -104,8 +104,8 @@ public class PiattoController {
 	
 	//configurazione form della pagina di modifica di un piatto di un buffet
 	@PostMapping("/admin/buffet/{idBuffet}/modificaPiatto/{idPiatto}")
-	public String modificaPiattoForm(@PathVariable("idBuffet") Long idBuffet, @PathVariable("idPiatto") Long idPiatto, 
-									@Valid @ModelAttribute("newPiatto") Piatto newPiatto, BindingResult bindingResult, Model model) {
+	public String modificaPiattoForm(@Valid @ModelAttribute("piatto") Piatto newPiatto, BindingResult bindingResult,
+								     @PathVariable("idBuffet") Long idBuffet, @PathVariable("idPiatto") Long idPiatto, Model model) {
 		Buffet buffet = this.bs.findById(idBuffet).get();
 		Piatto piatto = this.ps.findById(idPiatto).get();
 		
@@ -118,6 +118,9 @@ public class PiattoController {
 			return "buffet/buffet.html";
 		}
 		
+		newPiatto.setId(idPiatto);
+		model.addAttribute("buffet", buffet);
+		model.addAttribute("piatto", newPiatto);
 		return "admin/modificaPiatto.html";
 	}
 	

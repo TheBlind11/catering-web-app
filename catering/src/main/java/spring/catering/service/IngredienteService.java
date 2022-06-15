@@ -36,4 +36,8 @@ public class IngredienteService {
 	public Optional<Ingrediente> findById(Long idIngrediente) {
 		return this.ir.findById(idIngrediente);
 	}
+
+	public boolean alreadyExists(Ingrediente target) {
+		return this.ir.findByNomeAndOrigine(target.getNome(), target.getOrigine());
+	}
 }

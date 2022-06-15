@@ -24,18 +24,12 @@ public class IngredienteController {
 	@Autowired
 	private IngredienteService is;
 	
+	/* @Autowired
+	private IngredienteValidator iv; */
+	
 	@Autowired
 	private PiattoService ps;
 	
-	
-	@GetMapping("/piatto/{id}/elencoIngredienti")
-	public String getIngredienti(@PathVariable("id") Long id, Model model) {
-		Piatto piatto = this.ps.findById(id).get();
-		model.addAttribute("piatto", piatto);
-		model.addAttribute("ingredienti", piatto.getIngredienti());
-		
-		return "ingrediente/elencoIngredientiDelPiatto.html";
-	}
 	
 	@GetMapping("/admin/piatto/{idPiatto}/aggiungiIngrediente")
 	public String addIngrediente(@PathVariable("idPiatto") Long idPiatto, Model model) {
@@ -47,19 +41,21 @@ public class IngredienteController {
 	}
 	
 	@PostMapping("/admin/piatto/{idPiatto}/aggiungiIngrediente")
-	public String addIngrediente(@PathVariable("idPiatto") Long idPiatto, @Valid @ModelAttribute("ingrediente") Ingrediente ingrediente, BindingResult bindingResult, Model model) {
+	public String addIngrediente(@Valid @ModelAttribute("ingrediente") Ingrediente ingrediente, BindingResult bindingResult, 
+								 @PathVariable("idPiatto") Long idPiatto, Model model) {
 		Piatto piatto = this.ps.findById(idPiatto).get();
 		
+		//this.iv.validate(ingrediente, bindingResult);
 		if(!bindingResult.hasErrors()) {
 			List<Ingrediente> ingredienti = piatto.getIngredienti();
 			ingredienti.add(ingrediente);
 			this.ps.save(piatto);
 			model.addAttribute("piatto", piatto);
-			model.addAttribute("ingredienti", ingredienti);
 			
 			return "piatto/piatto.html";
 		}
 		
+		model.addAttribute("piatto", piatto);
 		return "admin/newIngrediente.html";
 	}
 	
@@ -70,7 +66,6 @@ public class IngredienteController {
 		this.is.delete(ingrediente);
 		
 		model.addAttribute("piatto", piatto);
-		model.addAttribute("ingredienti", piatto.getIngredienti());
 		
 		return "piatto/piatto.html";
 	}
@@ -86,11 +81,12 @@ public class IngredienteController {
 	}
 	
 	@PostMapping("/admin/piatto/{idPiatto}/modificaIngrediente/{idIngrediente}")
-	public String modificaIngrediente(@PathVariable("idPiatto") Long idPiatto, @PathVariable("idIngrediente") Long idIngrediente, 
-									@Valid @ModelAttribute("newIngrediente") Ingrediente newIngrediente, BindingResult bindingResult, Model model) {
+	public String modificaIngrediente(@Valid @ModelAttribute("ingrediente") Ingrediente newIngrediente, BindingResult bindingResult, 
+									  @PathVariable("idPiatto") Long idPiatto, @PathVariable("idIngrediente") Long idIngrediente, Model model) {
 		Piatto piatto = this.ps.findById(idPiatto).get();
 		Ingrediente ingrediente = this.is.findById(idIngrediente).get();
 		
+		//this.iv.validate(ingrediente, bindingResult);
 		if(!bindingResult.hasErrors()) {
 			this.is.update(ingrediente, newIngrediente);
 			model.addAttribute("piatto", piatto);
@@ -98,6 +94,9 @@ public class IngredienteController {
 			return "piatto/piatto.html";
 		}
 		
+		newIngrediente.setId(idIngrediente);
+		model.addAttribute("piatto", piatto);
+		model.addAttribute("ingrediente", newIngrediente);
 		return "admin/modificaIngrediente.html";
 	}
 }
