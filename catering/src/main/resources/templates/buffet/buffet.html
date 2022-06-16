@@ -9,13 +9,22 @@
     		<div class="carousel-item active">
       			<img class="d-block w-100" src="/images/buffetBanner.png" alt="First slide">
       			<div class="carousel-caption d-md-block">
-      				<h1 class="bannerTitle" style="padding: 20px; background: rgba(85,65,54,0.6);">Buffet</h1>
+      				<span class="bannerSubtitle" th:text="${buffet.nome}"></span><br><br><br>
+      				<span class="bannerText">Proposto dallo Chef:
+      					<a th:href="@{'/chef' + '/' + ${buffet.chef.id}}" th:text="|${buffet.chef.nome} ${buffet.chef.cognome}|"></a>
+      				</span>
       			</div>
     		</div>
     	</div>
     </div>
 	
 	<div class="container py-5">
+		<div class="row pb-4">
+			<div class="col md-4">
+				<h3 class="text-center font-weight-bold">I piatti del Buffet:</h3>
+			</div>
+		</div>
+		
 		<div class="row">
 			<div class="col col-lg-4" th:each="piatto : ${buffet.piatti}">
 				<div class="card">

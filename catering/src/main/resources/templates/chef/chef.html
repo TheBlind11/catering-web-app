@@ -9,13 +9,19 @@
     		<div class="carousel-item active">
       			<img class="d-block w-100" src="/images/bannerChef.webp" alt="First slide">
       			<div class="carousel-caption d-md-block">
-      				<h1 class="bannerTitle" style="padding: 20px; background: rgba(85,65,54,0.8);">Chef</h1>
+      				<span class="bannerSubtitle" th:text="${chef.nome} + ' ' + ${chef.cognome}"></span><br><br><br>
+      				<span class="bannerText" th:text="|Nazionalit&agrave: ${chef.nazionalita}"></span>
       			</div>
     		</div>
     	</div>
     </div>
 
 	<div class="container py-5">
+		<div class="row pb-4">
+			<div class="col md-4">
+				<h3 class="text-center font-weight-bold">I Buffet proposti dallo Chef:</h3>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col col-lg-4" th:each="buffet : ${chef.buffet}">
 				<div class="card">

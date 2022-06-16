@@ -9,13 +9,20 @@
     		<div class="carousel-item active">
       			<img class="d-block w-100" src="/images/piattoBanner.png" alt="First slide">
       			<div class="carousel-caption d-md-block">
-      				<h1 class="bannerTitle" style="padding: 20px; background: rgba(85,65,54,0.6);">Piatto</h1>
+      				<span class="bannerSubtitle" th:text="${piatto.nome}">Piatto</span><br><br><br>
+      				<span class="bannerText" th:text="${piatto.descrizione}"></span>
       			</div>
     		</div>
     	</div>
     </div>
 	
 	<div class="container py-5">
+		<div class="row pb-4">
+			<div class="col md-4">
+				<h3 class="text-center font-weight-bold">Gli ingredienti del piatto:</h3>
+			</div>
+		</div>
+		
 		<div class="row">
 			<div class="col col-lg-4" th:each="ingrediente : ${piatto.ingredienti}">
 				<div class="card">

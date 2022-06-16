@@ -9,7 +9,7 @@
     		<div class="carousel-item active">
       			<img class="d-block w-100" src="/images/bannerChef.webp" alt="First slide">
       			<div class="carousel-caption d-md-block" align=center>
-      				<h1 class="bannerTitle" style="text-align: center; background: rgba(85,65,54,0.8);">I nostri Chef</h1>
+      				<span class="bannerTitle">I nostri Chef</span>
       			</div>
     		</div>
     	</div>
@@ -25,7 +25,7 @@
   					
   					<div class="card-body">
     					<h5 class="card-title" th:text="${chef.nome} + ' ' + ${chef.cognome}"></h5>
-    					Nazionalità: <p class="card-text" th:text="${chef.nazionalita}"></p>
+    					Nazionalit&agrave: <p class="card-text" th:text="${chef.nazionalita}"></p>
     					<a sec:authorize="isAuthenticated()" class="btn my-2 my-sm-0 cardButton" th:href="@{'/chef' + '/' + ${chef.id}}">Visualizza Chef</a>
     				</div>
     				

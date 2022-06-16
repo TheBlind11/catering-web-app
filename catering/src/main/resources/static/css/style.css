@@ -43,7 +43,7 @@
 		margin-left: 0px;
 	}
 	
-	.dividerContatti {
+	.divider {
 		display: none;
 	}
 	
@@ -63,25 +63,45 @@
     justify-content: left
 }
 
-/* FONT BANNER */
-@font-face {
-	font-family: bellfort;
-	src: url("/fonts/bellFort/BellfortDrawRough-Thin.otf");
-}
-
 .bannerTitle {
-	font-family: bellfort;
-	font-size: 150px;
+	font-size: 90px;
 	color: #f9f1dc;
+	padding: 20px;
+	border-radius: 10px;
+	background:  rgba(85,65,54,0.8);
 }
 
 .carousel-caption {
 	top: 35%;
 }
 
+.top {
+	top: 50%;
+}
+
 /* BANNER */
 .banner {
 	margin-top: 63px;
+}
+
+.bannerSubtitle {
+	font-size: 60px;
+	color: #f9f1dc;
+	padding: 20px;
+	border-radius: 10px;
+	background:  rgba(85,65,54,0.8);
+}
+
+.bannerText {
+	font-size: 20px;
+	color: #f9f1dc;
+	padding: 20px;
+	border-radius: 10px;
+	background:  rgba(85,65,54,0.8);
+}
+
+.bannerText a {
+	color: #a48852;
 }
 
 /* GENERIC CARD */
@@ -145,10 +165,6 @@
 	margin: 0px;
 	color: white;
 	font-size: 20px;
-}
-
-.containerGeneric {
-	padding: 30px 50px 50px 50px;
 }
 
 .formtitle {
@@ -240,10 +256,7 @@ input:focus-visible {
     background-color: #858f96;
     margin-left: 50px;
     margin-right: 50px;
-}
-
-.dividerContatti {
-	margin: 50px 0px 50px 120px;
+    margin: 4rem
 }
 
 a {
