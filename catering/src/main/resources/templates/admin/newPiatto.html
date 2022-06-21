@@ -1,27 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8" />
-<link href="/css/style.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Ubuntu"
-	rel="stylesheet">
-<title>Catering Web App</title>
-</head>
+<head th:replace="fragments/base.html :: headerfiles(title='New Piatto')"></head>
 <body>
 	<div align="center" class="formtitle">
 		<h1>Aggiungi un Piatto al Buffet</h1>
 	</div>
 
-	<div class="formcontainer">
+	<div class="form-container">
 		<div class="itemform">
 			<form th:action="@{/admin} + @{/buffet} + '/' + ${buffet.id} + @{/aggiungiPiatto}" method="post" th:object="${piatto}">
 				<div>
 					<input type="text" placeholder="Nome" th:field="*{nome}" />
-					<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+					<div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="alert alert-danger" role="alert"></div>
 				</div>
 
 				<div>
 					<input type="text" placeholder="Descrizione" th:field="*{descrizione}" />
+					<div th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}" class="alert alert-danger" role="alert" ></div>
 				</div>
 
 				<div>

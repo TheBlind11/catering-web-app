@@ -173,13 +173,8 @@
 	margin-top: 150px;
 }
 
-.contattiTitle {
-	text-align: center; 
-	margin: 40px 0px;
-}
-
 .contattiText {
-	padding: 80px 0px 60px 0px;
+	padding: 100px 0px 60px 0px;
 	text-align: center;
 }
 
@@ -202,7 +197,7 @@ input {
     background-color: #827ffe;
     border-radius: 5px 5px 5px 5px;
     transition-duration: 0.4s;
-    width: 100%;
+    width: 280px;
     border: none;
 }
 
@@ -210,18 +205,18 @@ input {
 	background-color: #403866;
 }
 
-.formcontainer, .contatti{
+.form-container, .contatti{
 	width: 100%;
 	display: flex;
     justify-content: center; /* stessa cosa di text align per i contenitori */
 	align-items: center;
 }
 
-.formcontainer .itemform, .contattiItem{
+.form-container .itemform {
 	padding: 20px;
 }
 
-.formcontainer input {
+.form-container input {
     font-size: 18px;
     padding: 20px;
     border-radius: 5px 5px 5px 5px;
@@ -232,6 +227,10 @@ input {
 
 input:focus-visible {
     outline: none; /* bordo input text */
+}
+
+.bottoniOauth {
+	padding-top: 75px;
 }
 
 .socialbutton {
@@ -254,9 +253,16 @@ input:focus-visible {
     width: 2px;
     opacity: .8;
     background-color: #858f96;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin: 4rem
+    margin-left: 4rem;
+    margin-top: 2.5rem;
+}
+
+.dividerContatti {
+	height: 170px;
+    width: 2px;
+    opacity: .8;
+    background-color: #858f96;
+    margin: 4rem;
 }
 
 a {
@@ -286,9 +292,13 @@ a:hover {
 
 .fb:hover {
     box-shadow: 0 -1px 0 #3b5998, 0 2px 4px #3b5998;
+    color: white;
 }
 
 .fblogo {
     width: 18px;
 }
 
+.alert {
+	width: 280px;
+}

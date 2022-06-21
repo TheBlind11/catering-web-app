@@ -28,7 +28,6 @@ public class Credentials {
 	@Size(min = 8, max = 255)
 	private String password;
 	
-	@NotBlank
 	private String role;
 	
 	@OneToOne(cascade = CascadeType.ALL)

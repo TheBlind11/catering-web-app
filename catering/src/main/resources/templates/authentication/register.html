@@ -1,47 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-	<meta charset="UTF-8" />
-	<link href="/css/style.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-	<title>User Registration</title>
-</head>
+<head th:replace="fragments/base.html :: headerfiles(title='Register')"></head>
 <body>
 	<div align="center" class="formtitle"><h1>Registrati</h1>
 	</div>
 	
-	<div class="formcontainer">
+	<div class="form-container">
 		<div class="itemform">
 			<form th:action="@{/register}" method="post">
 				<div th:object="${utente}">
-					<div class="alert alert-danger" role="alert" th:if="${#fields.hasGlobalErrors()}">
-                		<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
-                	</div>
-                
+					<div th:if="${#fields.hasGlobalErrors()}" class="alert alert-danger" role="alert">
+                        <div align="center" th:each="err : ${#fields.globalErrors()}" th:text="'Errore: ' + ${err}">...</div>
+                    </div>
+                    
 					<div>
 						<input type="text" placeholder="Nome" th:field="*{nome}"/>
-						<span class="alert alert-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+						<div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="alert alert-danger" role="alert"></div>
 					</div>
 				
 					<div>
 						<input type="text" placeholder="Cognome" th:field="*{cognome}"/>
-						<span class="alert alert-danger" th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></span>
+						<div class="alert alert-danger error" th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></div>
 					</div>
 				</div>
 			
 				<div th:object="${credenziali}">
 					<div th:if="${#fields.hasGlobalErrors()}">
-                		<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
+                		<div class="alert alert-dismissible alert-danger error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</div> 
                 	</div>
 					
 					<div>
 						<input type="text" placeholder="Username" th:field="*{username}" />
-						<span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+						<div class="alert alert-dismissible alert-danger error"th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
 					</div>
 			
 					<div>
 						<input type="password" placeholder="Password" th:field="*{password}" />
-						<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+						<div class="alert alert-dismissible alert-danger error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
 					</div>
 				</div>
 				
@@ -51,5 +46,8 @@
 			</form>
 		</div>
 	</div>
+	
+	<div th:replace="fragments/base.html :: script"></div>
+	
 </body>
 </html>
